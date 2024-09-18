@@ -2,22 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-
-    <key>GIDServerClientID</key>
-        <string>180951249266-9cn8vatdnto1q3t3phfivvf0b5e453bf.apps.googleusercontent.com</string>
-
-        <key>GIDClientID</key>
-        <string>180951249266-2b7bbk93d0od5nd5spi3piptb2udv7ll.apps.googleusercontent.com</string>
-        <key>CFBundleURLTypes</key>
-        <array>
-          <dict>
-            <key>CFBundleURLSchemes</key>
-            <array>
-              <string>com.googleusercontent.apps.180951249266-2b7bbk93d0od5nd5spi3piptb2udv7ll</string>
-            </array>
-          </dict>
-        </array>
-
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -39,12 +23,19 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.180951249266-2b7bbk93d0od5nd5spi3piptb2udv7ll</string>
+				<string>com.googleusercontent.apps.399151558851-e7ieodm2374f4u1i1fkfemobtf55p232</string>
+				<string>app-1-399151558851-ios-189e8cb29c33e1c4057276</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<true/>
+	<key>GIDClientID</key>
+	<string>399151558851-e7ieodm2374f4u1i1fkfemobtf55p232.apps.googleusercontent.com</string>
+	<key>GIDServerClientID</key>
+	<string>399151558851-jkrfloqpg99j6ruqiodu84a11ntmcgdn.apps.googleusercontent.com</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIApplicationSceneManifest</key>
@@ -52,6 +43,10 @@
 		<key>UIApplicationSupportsMultipleScenes</key>
 		<false/>
 	</dict>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchScreen</key>
 	<dict/>
 	<key>UIRequiredDeviceCapabilities</key>

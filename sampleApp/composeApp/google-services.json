@@ -1,48 +1,56 @@
 {
   "project_info": {
-    "project_number": "180951249266",
-    "project_id": "kmpauthapp",
-    "storage_bucket": "kmpauthapp.appspot.com"
+    "project_number": "399151558851",
+    "project_id": "modacenterfidelity-85b3c",
+    "storage_bucket": "modacenterfidelity-85b3c.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:180951249266:android:1a83eb8eea4835070e2deb",
+        "mobilesdk_app_id": "1:399151558851:android:18d6d3d00c7edeb2057276",
         "android_client_info": {
-          "package_name": "com.mmk.kmpauth.sample"
+          "package_name": "it.hypernext.modacenter.fidelity"
         }
       },
       "oauth_client": [
         {
-          "client_id": "180951249266-muupgucll493urjl69649g1r2q5bu0il.apps.googleusercontent.com",
+          "client_id": "399151558851-e7ieodm2374f4u1i1fkfemobtf55p232.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.mmk.kmpauth.sample",
-            "certificate_hash": "eeb32fc9a3dfb66fec9842f79ebc0147cc370a7f"
+            "package_name": "it.hypernext.modacenter.fidelity",
+            "certificate_hash": "bcaa5ca0eea16fd865074562987d142b12f203be"
           }
         },
         {
-          "client_id": "180951249266-9cn8vatdnto1q3t3phfivvf0b5e453bf.apps.googleusercontent.com",
+          "client_id": "399151558851-ti35f9kkn6jtn0t8av3jh3d6a0fh623i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "it.hypernext.modacenter.fidelity",
+            "certificate_hash": "71a0093c4c42372bfd4292634d8487af27281323"
+          }
+        },
+        {
+          "client_id": "399151558851-q2avuqb213g4na7d8jmhvdjb132nhrif.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAU4EB8PdtZ0faNDJaLvn6r6aXgcOKGpxQ"
+          "current_key": "AIzaSyDMoe97fVA0T0I9okhEhNyDjSzNwDADCbA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "180951249266-9cn8vatdnto1q3t3phfivvf0b5e453bf.apps.googleusercontent.com",
+              "client_id": "399151558851-q2avuqb213g4na7d8jmhvdjb132nhrif.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "180951249266-2b7bbk93d0od5nd5spi3piptb2udv7ll.apps.googleusercontent.com",
+              "client_id": "399151558851-jkrfloqpg99j6ruqiodu84a11ntmcgdn.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.mmk.kmpauth"
+                "bundle_id": "it.hypernext.modacenter.fidelity.ModacenterFidelity"
               }
             }
           ]

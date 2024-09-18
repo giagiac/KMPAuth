@@ -1,4 +1,4 @@
-package com.mmk.kmpauth.sample
+package it.hypernext.modacenter.fidelity
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.sp
 import com.mmk.kmpauth.firebase.apple.AppleButtonUiContainer
 import com.mmk.kmpauth.firebase.github.GithubButtonUiContainer
 import com.mmk.kmpauth.firebase.google.GoogleButtonUiContainerFirebase
+import com.mmk.kmpauth.firebase.phone.PhoneAuthContainer
 import com.mmk.kmpauth.google.GoogleButtonUiContainer
 import com.mmk.kmpauth.uihelper.apple.AppleSignInButton
 import com.mmk.kmpauth.uihelper.apple.AppleSignInButtonIconOnly
@@ -59,6 +60,40 @@ fun App() {
                 text = signedInUserName,
                 style = MaterialTheme.typography.body1,
                 textAlign = TextAlign.Start,
+            )
+
+            // ************************** UiHelper Text Buttons *************
+            Divider(modifier = Modifier.fillMaxWidth().padding(16.dp))
+            val myState = remember { mutableStateOf("Codice OAuth Phone") }
+            Text(
+                text = myState.value,
+                style = MaterialTheme.typography.h4,
+                textAlign = TextAlign.Start,
+            )
+
+            PhoneAuthContainer(
+                modifier = Modifier.fillMaxWidth(),
+                phoneNumber = "+393404800561",
+                codeSent = { triggerResend ->
+                    // TODO
+                    print("Trigger")
+                },
+                getVerificationCode = fun(code: String) {
+                    // TODO
+                    print(code)
+                    myState.value = code
+                },
+                onResult = onFirebaseResult,
+                content = {
+                    Button(onClick = { this.onClick() }) { Text("Phone Sign-In") }
+                }
+            )
+
+            // ************************** UiHelper Text Buttons *************
+            Divider(modifier = Modifier.fillMaxWidth().padding(16.dp))
+            AuthUiHelperButtonsAndFirebaseAuth(
+                modifier = Modifier.width(IntrinsicSize.Max),
+                onFirebaseResult = onFirebaseResult
             )
 
             //Google Sign-In with Custom Button and authentication without Firebase
@@ -110,7 +145,10 @@ fun AuthUiHelperButtonsAndFirebaseAuth(
 
         //Google Sign-In Button and authentication with Firebase
         GoogleButtonUiContainerFirebase(onResult = onFirebaseResult) {
-            GoogleSignInButton(modifier = Modifier.fillMaxWidth().height(44.dp), fontSize = 19.sp) { this.onClick() }
+            GoogleSignInButton(
+                modifier = Modifier.fillMaxWidth().height(44.dp),
+                fontSize = 19.sp
+            ) { this.onClick() }
         }
 
         //Apple Sign-In Button and authentication with Firebase

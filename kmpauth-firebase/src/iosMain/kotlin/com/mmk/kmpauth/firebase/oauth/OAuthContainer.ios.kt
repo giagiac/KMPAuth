@@ -21,7 +21,7 @@ import kotlin.coroutines.suspendCoroutine
 
 //On iOS this is needed for some reason, app is recomposed again when navigate to OAuth Screen.
 // rememberUpdatedState doesn't solve the problem
-private var mOnResult: ((Result<FirebaseUser?>) -> Unit)? = null
+public var mOnResult: ((Result<FirebaseUser?>) -> Unit)? = null
 
 @Composable
 public actual fun OAuthContainer(
@@ -42,7 +42,6 @@ public actual fun OAuthContainer(
                     mOnResult = null
                 }
             }
-
         }
     }
     Box(modifier = modifier) { uiContainerScope.content() }

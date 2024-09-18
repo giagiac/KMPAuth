@@ -1,4 +1,4 @@
-package com.mmk.kmpauth.sample
+package it.hypernext.modacenter.fidelity
 
 import androidx.compose.ui.window.ComposeUIViewController
 

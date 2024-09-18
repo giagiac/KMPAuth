@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <application
         android:allowBackup="true"
-        android:name="com.mmk.kmpauth.sample.MainApplication"
+        android:name="it.hypernext.modacenter.fidelity.MainApplication"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -12,7 +12,7 @@
         <activity
             android:exported="true"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden|mnc|colorMode|density|fontScale|fontWeightAdjustment|keyboard|layoutDirection|locale|mcc|navigation|smallestScreenSize|touchscreen|uiMode"
-            android:name="com.mmk.kmpauth.sample.MainActivity">
+            android:name="it.hypernext.modacenter.fidelity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

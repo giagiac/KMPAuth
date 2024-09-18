@@ -1,4 +1,4 @@
-package com.mmk.kmpauth.sample
+package it.hypernext.modacenter.fidelity
 
 import android.app.Application
 

@@ -43,12 +43,13 @@ kotlin {
             implementation(project(":kmpauth-google"))
             implementation(project(":kmpauth-firebase"))
             implementation(project(":kmpauth-uihelper"))
+            api(libs.kmpNotifier)
         }
     }
 }
 
 android {
-    namespace = "com.mmk.kmpauth.sample"
+    namespace = "it.hypernext.modacenter.fidelity"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
@@ -56,7 +57,7 @@ android {
     sourceSets["main"].resources.srcDirs("src/commonMain/resources")
 
     defaultConfig {
-        applicationId = "com.mmk.kmpauth.sample"
+        applicationId = "it.hypernext.modacenter.fidelity"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
