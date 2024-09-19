@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
@@ -97,8 +98,8 @@ public actual fun PhoneAuthContainer(
         }
     }
     Box(modifier = modifier) {
-        Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            TextField(_verificationCode.value,onValueChange = {
+        Column {
+            TextField(modifier = Modifier.fillMaxWidth(), value = _verificationCode.value, onValueChange = {
                 _verificationCode.value = it
             })
             Button(onClick = {

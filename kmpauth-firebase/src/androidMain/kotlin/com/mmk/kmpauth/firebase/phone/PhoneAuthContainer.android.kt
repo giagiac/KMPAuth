@@ -75,7 +75,20 @@ public actual fun PhoneAuthContainer(
 
     Box(modifier = modifier) {
         Column {
-            uiContainerScope.content()
+            //uiContainerScope.content()
+            Button(onClick = {
+                sendVerificationCode(activity!!,
+                    phoneNumber,
+                    FirebaseAuth.getInstance(),
+                    { id, token ->
+                        verificationId = id
+//                    resendToken = token
+                        println(token)
+                    },
+                    { exception ->
+                        println("Error : ${exception.message}")
+                    })
+            }) { Text("Phone Sign-In") }
             verificationId?.let {
                 Text(text = "Enter the verification code sent to $phoneNumber")
                 Spacer(modifier = Modifier.height(16.dp))

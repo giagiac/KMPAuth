@@ -7,6 +7,6 @@ import com.mmk.kmpauth.google.GoogleAuthProvider
 object AppInitializer {
     fun onApplicationStart() {
         onApplicationStartPlatformSpecific()
-        GoogleAuthProvider.create(credentials = GoogleAuthCredentials(serverId = "482654189035-bp4j3ocmtim7tfob8benp5uqpacvc59u.apps.googleusercontent.com"))
+        GoogleAuthProvider.create(credentials = GoogleAuthCredentials(serverId = "834229780666-i4lcikfn7dh54b3khqapppbg1hg4igfr.apps.googleusercontent.com"))
     }
 }
