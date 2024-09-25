@@ -1,14 +1,11 @@
 package com.mmk.kmpauth.firebase.apple
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.interop.UIKitView
-import androidx.compose.ui.unit.dp
 import cocoapods.FirebaseAuth.FIRAuth
 import cocoapods.FirebaseAuth.FIROAuthProvider
 import com.mmk.kmpauth.core.UiContainerScope
@@ -17,7 +14,6 @@ import dev.gitlive.firebase.auth.FirebaseUser
 import dev.gitlive.firebase.auth.auth
 import kotlinx.cinterop.BetaInteropApi
 import kotlinx.cinterop.ExperimentalForeignApi
-import kotlinx.cinterop.ObjCAction
 import kotlinx.cinterop.UByteVar
 import kotlinx.cinterop.addressOf
 import kotlinx.cinterop.allocArray
@@ -27,7 +23,6 @@ import kotlinx.cinterop.readBytes
 import kotlinx.cinterop.refTo
 import kotlinx.cinterop.usePinned
 import platform.AuthenticationServices.ASAuthorization
-import platform.AuthenticationServices.ASAuthorizationAppleIDButton
 import platform.AuthenticationServices.ASAuthorizationAppleIDCredential
 import platform.AuthenticationServices.ASAuthorizationAppleIDProvider
 import platform.AuthenticationServices.ASAuthorizationController
@@ -38,9 +33,7 @@ import platform.AuthenticationServices.ASAuthorizationScopeFullName
 import platform.AuthenticationServices.ASPresentationAnchor
 import platform.CoreCrypto.CC_SHA256
 import platform.CoreCrypto.CC_SHA256_DIGEST_LENGTH
-import platform.CoreGraphics.CGRectMake
 import platform.Foundation.NSError
-import platform.Foundation.NSSelectorFromString
 import platform.Foundation.NSString
 import platform.Foundation.NSUTF8StringEncoding
 import platform.Foundation.create
@@ -48,8 +41,6 @@ import platform.Security.SecRandomCopyBytes
 import platform.Security.errSecSuccess
 import platform.Security.kSecRandomDefault
 import platform.UIKit.UIApplication
-import platform.UIKit.UIControlEventTouchUpInside
-import platform.UIKit.UIStackView
 import platform.darwin.NSObject
 
 private var currentNonce: String? = null

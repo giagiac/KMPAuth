@@ -90,6 +90,7 @@ android {
     }
     dependencies {
         debugImplementation(libs.compose.ui.tooling)
+        implementation(project.dependencies.platform("com.google.firebase:firebase-bom:33.3.0"))
     }
 }
 

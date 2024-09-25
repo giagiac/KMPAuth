@@ -3,11 +3,8 @@ package com.mmk.kmpauth.firebase.phone
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.mmk.kmpauth.core.UiContainerScope
-import com.mmk.kmpauth.firebase.apple.AppleSignInRequestScope
 import dev.gitlive.firebase.auth.FirebaseUser
 import dev.gitlive.firebase.auth.OAuthProvider
-import dev.gitlive.firebase.auth.PhoneAuthProvider
-import dev.gitlive.firebase.auth.PhoneVerificationProvider
 
 /**
  * OAuth Ui Container Composable that handles all sign-in functionality for given provider.
