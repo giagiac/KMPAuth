@@ -23,6 +23,7 @@ kotlin {
         iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
+            export(project(":kmpnotifier"))
             baseName = "composeApp"
             isStatic = true
         }
@@ -40,10 +41,12 @@ kotlin {
             implementation(compose.material)
             @OptIn(ExperimentalComposeLibrary::class)
             implementation(compose.components.resources)
+            api(project(":kmpnotifier"))
             implementation(project(":kmpauth-google"))
             implementation(project(":kmpauth-firebase"))
             implementation(project(":kmpauth-uihelper"))
-            api(libs.kmpNotifier)
+            implementation(project(":kmpnotifier"))
+            // api(libs.kmpNotifier)
         }
     }
 }

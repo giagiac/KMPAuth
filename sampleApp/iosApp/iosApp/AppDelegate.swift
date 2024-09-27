@@ -112,6 +112,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
   
       // Print full message.
       print(userInfo)
+          
+      NotifierManager.shared.onApplicationDidReceiveRemoteNotification(userInfo: userInfo)
   
       return UIBackgroundFetchResult.newData
     }
