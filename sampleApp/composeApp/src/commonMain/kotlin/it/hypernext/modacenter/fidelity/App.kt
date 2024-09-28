@@ -14,6 +14,7 @@ import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -32,10 +33,23 @@ import com.mmk.kmpauth.uihelper.apple.AppleSignInButton
 import com.mmk.kmpauth.uihelper.apple.AppleSignInButtonIconOnly
 import com.mmk.kmpauth.uihelper.google.GoogleSignInButton
 import com.mmk.kmpauth.uihelper.google.GoogleSignInButtonIconOnly
+import com.mmk.kmpnotifier.notification.NotifierManager
 import dev.gitlive.firebase.auth.FirebaseUser
 
 @Composable
 fun App() {
+    var myPushNotificationToken by remember { mutableStateOf("") }
+    LaunchedEffect(true) {
+
+        println("LaunchedEffectApp is called")
+        NotifierManager.addListener(object : NotifierManager.Listener {
+            override fun onNewToken(token: String) {
+                myPushNotificationToken = token
+                println("onNewToken: $token")
+            }
+        })
+        myPushNotificationToken = NotifierManager.getPushNotifier().getToken() ?: ""
+    }
 
     MaterialTheme {
         Column(
@@ -43,6 +57,48 @@ fun App() {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterVertically)
         ) {
+            val notifier = remember { NotifierManager.getLocalNotifier() }
+            val permissionUtil = remember { NotifierManager.getPermissionUtil() }
+            var notificationId by remember { mutableStateOf(0) }
+//            Button(onClick = {
+//                notificationId = notifier.notify(
+//                    title = "Title",
+//                    body = "bodyMessage",
+//                    payloadData = mapOf(
+//                        Notifier.KEY_URL to "https://github.com/mirzemehdi/KMPNotifier/",
+//                        "extraKey" to "randomValue"
+//                    )
+//                )
+//            }) {
+//                Text("Send Local Notification")
+//            }
+//            Button(onClick = { notifier.removeAll() }) {
+//                Text("Remove all notifications")
+//            }
+//
+//            Button(enabled = notificationId != 0, onClick = {
+//                notifier.remove(notificationId)
+//                notificationId = 0
+//            }) {
+//                println("FirebaseToken: $myPushNotificationToken")
+//                Text("Remove NotificationID #$notificationId")
+//            }
+//
+//            Text(
+//                modifier = Modifier.padding(20.dp),
+//                text = "FirebaseToken: $myPushNotificationToken",
+//                style = MaterialTheme.typography.body1,
+//                textAlign = TextAlign.Start,
+//            )
+
+
+            Button(onClick = {
+                permissionUtil.askNotificationPermission {
+                    println("Permission is granted")
+                }
+            }) {
+                Text("Ask permission")
+            }
 
             var signedInUserName: String by remember { mutableStateOf("") }
             val onFirebaseResult: (Result<FirebaseUser?>) -> Unit = { result ->

@@ -34,6 +34,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
       FirebaseApp.configure()
+      
+
+      
       // [START set_messaging_delegate]
       Messaging.messaging().delegate = self
     
@@ -114,6 +117,15 @@ class AppDelegate: NSObject, UIApplicationDelegate {
       print(userInfo)
           
       NotifierManager.shared.onApplicationDidReceiveRemoteNotification(userInfo: userInfo)
+          
+//          //By default showPushNotification value is true.
+//                //When set showPushNotification to false foreground push  notification will not be shown.
+//                //You can still get notification content using #onPushNotification listener method.
+//                NotifierManager.shared.initialize(configuration: NotificationPlatformConfigurationIos(
+//                      showPushNotification: true,
+//                      askNotificationPermissionOnStart: true,
+//                      notificationSoundName: "custom_notification_sound.wav")
+//                )
   
       return UIBackgroundFetchResult.newData
     }
