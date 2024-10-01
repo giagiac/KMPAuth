@@ -2,115 +2,117 @@ package com.mmk.kmpauth.firebase.phone
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Button
+import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
-import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.mmk.kmpauth.core.UiContainerScope
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.dp
 import dev.gitlive.firebase.Firebase
 import dev.gitlive.firebase.auth.FirebaseUser
-import dev.gitlive.firebase.auth.OAuthProvider
 import dev.gitlive.firebase.auth.PhoneAuthProvider
 import dev.gitlive.firebase.auth.auth
 import kotlinx.cinterop.ExperimentalForeignApi
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
+import platform.Foundation.NSError
 
 //On iOS this is needed for some reason, app is recomposed again when navigate to OAuth Screen.
 // rememberUpdatedState doesn't solve the problem
 
-/**
- * OAuth Ui Container Composable that handles all sign-in functionality for given provider.
- * Child of this Composable can be any view or Composable function.
- * You need to call [UiContainerScope.onClick] function on your child view's click function.
- *
- * [onResult] callback will return [Result] with [FirebaseUser] type.
- * @param phoneAuthProvider [OAuthProvider] class object.
- *
- * Example Usage:
- * ```
- *
- * OAuthContainer(onResult = onFirebaseResult) {
- *     Button(onClick = { this.onClick() }) { Text("Github Sign-In (Custom Design)") }
- * }
- * val oAuthProvider = OAuthProvider(provider = "github.com")
- * OAuthContainer(modifier = modifier, oAuthProvider = oAuthProvider,onResult = onFirebaseResult){
- *  Button(onClick = { this.onClick() }) { Text("Github Sign-In (Custom Design)") }
- * }
- *
- * ```
- *
- */
 @OptIn(ExperimentalForeignApi::class)
 @Composable
 public actual fun PhoneAuthContainer(
     modifier: Modifier,
-    phoneNumber: String,
     codeSent: (triggerResend: (Unit)) -> Unit,
     getVerificationCode: (code: String) -> Unit,
-    content: @Composable UiContainerScope.() -> Unit,
-    onResult: (Result<FirebaseUser?>) -> Unit,
+    onResult: (Result<FirebaseUser?>) -> Unit
 ) {
-//    val oAuthProvider = OAuthProvider(provider = "apple.com")
-//    val updatedOnResultFunc by rememberUpdatedState(onResult)
-//    mOnResult = updatedOnResultFunc
-    val coroutineScope = MainScope()
+    val auth = Firebase.auth.ios
 
-//    FIRAuth.initialize()
-//    val app = Firebase.auth.ios.app()
+    var _verificationCode by remember { mutableStateOf("") }
+    var _verificationId by remember { mutableStateOf<String?>(null) }
+    var resendToken by remember { mutableStateOf<String?>(null) }
+    var errorSend by remember { mutableStateOf<String?>(null) }
 
-    var _verificationCode = remember { mutableStateOf("") }
-    var _verificationId = remember { mutableStateOf("") }
+    var phoneNumber by remember { mutableStateOf<String?>(null) }
 
-    val uiContainerScope = remember {
-        object : UiContainerScope {
-            override fun onClick() {
-                coroutineScope.launch {
-                    // val result = onClickSignIn(oAuthProvider)
-                    // mOnResult?.invoke(result)
-                    println("Clicked")
-                    // val p = FIRPhoneAuthCredential.initialize()
-                    // var credential = PhoneAuthCredential(FIRPhoneAuthCredential())
+    var phoneNumberEnabled by remember { mutableStateOf(true) }
+    var verificationCodeEnabled by remember { mutableStateOf(true) }
 
-                    try {
-                        PhoneAuthProvider().ios.verifyPhoneNumber(phoneNumber = phoneNumber, null) { verificationId, token ->
-                            println("Verification id -> $verificationId")
-                            println("Token: $token")
-
-                            getVerificationCode(verificationId!!.subSequence(0,5).toString())
-
-                            _verificationId.value = verificationId
-                        }
-                    }catch (ex: Exception){
-                        print(ex.message)
-                    }
-
-                }
-            }
-        }
-    }
     Box(modifier = modifier) {
         Column {
-            TextField(modifier = Modifier.fillMaxWidth(), value = _verificationCode.value, onValueChange = {
-                _verificationCode.value = it
+            PhoneNumbers(enabled = phoneNumberEnabled, getPhoneNumber = { phone ->
+                phoneNumber = phone
             })
-            Button(onClick = {
-                val authCredential = PhoneAuthProvider().ios.credentialWithVerificationID(_verificationId.value, _verificationCode.value)
-
-                val auth = Firebase.auth.ios
-
-                auth.signInWithCredential(authCredential) { result, signInError ->
-                    println("Result: ${result?.user?.phoneNumber}")
-                    println("Error: $signInError")
-                    if (result != null) Result.success(Firebase.auth.currentUser)
-                    else Result.failure(IllegalStateException(signInError?.localizedFailureReason))
+            Text(text = errorSend ?: "", color = Color.Red)
+            phoneNumber?.let { phone ->
+                phoneNumberEnabled = false
+                if (_verificationId == null && errorSend == null) {
+                    PhoneAuthProvider().ios.verifyPhoneNumber(
+                        phoneNumber = phone,
+                        null,
+                        completion = { token: String?, error: NSError? ->
+                            if (error != null) {
+                                errorSend =
+                                    "Errore di autenticazione : " + error.localizedFailureReason()
+                                //return@verifyPhoneNumber
+                            } else {
+                                // println("Verification id -> $token")
+                                println("Token: $token")
+                                _verificationId = token
+                            }
+                        }
+                    )
                 }
-            },content= { Text("Click to send")})
-            uiContainerScope.content()
+                if (_verificationId != null && errorSend == null) {
+                    Column(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        OutlinedTextField(
+                            enabled = verificationCodeEnabled,
+                            value = _verificationCode,
+                            onValueChange = { _verificationCode = it },
+                            label = { Text("Inserisci il codice inviato a $phone") },
+                            modifier = Modifier.fillMaxWidth(),
+                            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                        )
+                        Spacer(modifier = Modifier.height(16.dp))
+                        Button(enabled = verificationCodeEnabled,
+                            onClick = {
+                                verificationCodeEnabled = false
+                                val authCredential =
+                                    PhoneAuthProvider().ios.credentialWithVerificationID(
+                                        _verificationId!!,
+                                        _verificationCode
+                                    )
+
+                                auth.signInWithCredential(authCredential) { result, signInError ->
+                                    println("Result: ${result?.user?.phoneNumber}")
+                                    println("Error: $signInError")
+                                    if (result != null) onResult(Result.success(Firebase.auth.currentUser))
+                                    else {
+                                        errorSend = signInError?.localizedFailureReason
+                                        onResult(Result.failure(IllegalStateException(signInError?.localizedFailureReason)))
+                                    }
+                                }
+
+                            }) {
+                            Text(text = "Conferma")
+                        }
+                    }
+                }
+            }
         }
     }
 }

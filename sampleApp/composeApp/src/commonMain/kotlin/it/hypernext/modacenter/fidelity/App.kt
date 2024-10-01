@@ -101,14 +101,17 @@ fun App() {
             }
 
             var signedInUserName: String by remember { mutableStateOf("") }
+            var errorSignin: String by remember { mutableStateOf("") }
             val onFirebaseResult: (Result<FirebaseUser?>) -> Unit = { result ->
                 if (result.isSuccess) {
                     val firebaseUser = result.getOrNull()
                     signedInUserName =
-                        firebaseUser?.displayName ?: firebaseUser?.email ?: "Null User"
+                        firebaseUser?.displayName ?: firebaseUser?.email
+                                ?: firebaseUser?.phoneNumber ?: "Null User"
                 } else {
-                    signedInUserName = "Null User"
-                    println("Error Result: ${result.exceptionOrNull()?.message}")
+                    signedInUserName = ""
+                    errorSignin =
+                        "Att.ne qualcosa è andato storto, verifica i dati inseriti! ${result.exceptionOrNull()?.message}"
                 }
 
             }
@@ -117,32 +120,27 @@ fun App() {
                 style = MaterialTheme.typography.body1,
                 textAlign = TextAlign.Start,
             )
+            Text(
+                text = signedInUserName,
+                style = MaterialTheme.typography.body1,
+                textAlign = TextAlign.Start,
+                color = MaterialTheme.colors.error
+            )
 
             // ************************** UiHelper Text Buttons *************
             Divider(modifier = Modifier.fillMaxWidth().padding(16.dp))
-            val myState = remember { mutableStateOf("Codice OAuth Phone") }
-            Text(
-                text = myState.value,
-                style = MaterialTheme.typography.h4,
-                textAlign = TextAlign.Start,
-            )
 
             PhoneAuthContainer(
                 modifier = Modifier.fillMaxWidth(),
-                phoneNumber = "+393404800561",
-                codeSent = { triggerResend ->
+                codeSent = { token ->
                     // TODO
-                    print("Trigger")
+                    print(token)
                 },
                 getVerificationCode = fun(code: String) {
                     // TODO
                     print(code)
-                    myState.value = code
                 },
-                onResult = onFirebaseResult,
-                content = {
-                    Button(onClick = { this.onClick() }) { Text("Phone Sign-In") }
-                }
+                onResult = onFirebaseResult
             )
 
             // ************************** UiHelper Text Buttons *************
