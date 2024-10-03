@@ -1,6 +1,6 @@
 import SwiftUI
 import FirebaseMessaging
-import composeApp
+// import composeApp
 import GoogleSignIn
 import FirebaseCore
 import FirebaseAuth
