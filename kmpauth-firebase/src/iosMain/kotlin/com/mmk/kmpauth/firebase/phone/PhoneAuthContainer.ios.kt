@@ -109,6 +109,7 @@ public actual fun PhoneAuthContainer(
 
                             }) {
                             Text(text = "Conferma")
+                            Spacer(modifier = Modifier.height(16.dp))
                         }
                     }
                 }

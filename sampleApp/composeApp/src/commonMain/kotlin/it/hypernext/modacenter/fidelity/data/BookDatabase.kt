@@ -6,14 +6,18 @@ import androidx.room.RoomDatabase
 import androidx.room.RoomDatabaseConstructor
 import androidx.room.TypeConverter
 import androidx.room.TypeConverters
+import it.hypernext.modacenter.fidelity.data.dao.AppSettingsDao
 import it.hypernext.modacenter.fidelity.data.dao.BookDao
+import it.hypernext.modacenter.fidelity.data.dao.UserDao
+import it.hypernext.modacenter.fidelity.domain.AppSettings
 import it.hypernext.modacenter.fidelity.domain.Book
+import it.hypernext.modacenter.fidelity.domain.User
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.json.Json
 
 @Database(
-    entities = [Book::class],
+    entities = [Book::class, User::class, AppSettings::class],
     version = 1,
     exportSchema = true
 )
@@ -21,6 +25,8 @@ import kotlinx.serialization.json.Json
 @TypeConverters(BookTypeConverter::class)
 abstract class BookDatabase : RoomDatabase() {
     abstract fun bookDao(): BookDao
+    abstract fun userDao(): UserDao
+    abstract fun appSettingsDao(): AppSettingsDao
 }
 
 @Suppress("NO_ACTUAL_FOR_EXPECT")

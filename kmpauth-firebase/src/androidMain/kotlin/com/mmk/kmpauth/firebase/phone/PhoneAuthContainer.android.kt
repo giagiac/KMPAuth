@@ -99,6 +99,7 @@ public actual fun PhoneAuthContainer(
                                 Log.d("MainActivity", "Code sent: $verificationId")
                                 resendToken = token
                                 _verificationId = verificationId
+                                verificationCodeEnabled = true
                             }
                         }).build()
                     PhoneAuthProvider.verifyPhoneNumber(options)
@@ -141,6 +142,7 @@ public actual fun PhoneAuthContainer(
                         }) {
                             Text(text = "Conferma")
                         }
+                        Spacer(modifier = Modifier.height(16.dp))
                     }
                 }
             }

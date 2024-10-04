@@ -3,6 +3,7 @@ package it.hypernext.modacenter.fidelity.di
 import it.hypernext.modacenter.fidelity.data.getRoomDatabase
 import it.hypernext.modacenter.fidelity.presentation.screen.details.DetailsViewModel
 import it.hypernext.modacenter.fidelity.presentation.screen.home.HomeViewModel
+import it.hypernext.modacenter.fidelity.presentation.screen.login.LoginViewModel
 import it.hypernext.modacenter.fidelity.presentation.screen.manage.ManageViewModel
 import org.koin.core.KoinApplication
 import org.koin.core.context.startKoin
@@ -14,6 +15,7 @@ expect val targetModule: Module
 
 val sharedModule = module {
     single { getRoomDatabase(get()) }
+    viewModelOf(::LoginViewModel)
     viewModelOf(::HomeViewModel)
     viewModelOf(::ManageViewModel)
     viewModelOf(::DetailsViewModel)

@@ -8,14 +8,27 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import it.hypernext.modacenter.fidelity.presentation.screen.details.DetailsScreen
 import it.hypernext.modacenter.fidelity.presentation.screen.home.HomeScreen
+import it.hypernext.modacenter.fidelity.presentation.screen.login.LoginScreen
 import it.hypernext.modacenter.fidelity.presentation.screen.manage.ManageScreen
 
 @Composable
-fun SetupNavGraph(navController: NavHostController) {
+fun SetupNavGraph(navController: NavHostController, startDestination: String) {
+    
     NavHost(
         navController = navController,
-        startDestination = Screen.Home.route
+        startDestination = startDestination // Screen.Login.route
     ) {
+        composable(route = Screen.Login.route) {
+            LoginScreen(
+                onLoginSuccess = {
+                    navController.navigate(Screen.Home.route) {
+                        popUpTo(Screen.Login.route) {
+                            inclusive = true
+                        }
+                    }
+                }
+            )
+        }
         composable(route = Screen.Home.route) {
             HomeScreen(
                 onBookSelect = {
