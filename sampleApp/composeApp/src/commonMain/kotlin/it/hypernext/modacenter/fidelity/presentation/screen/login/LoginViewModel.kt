@@ -14,6 +14,11 @@ class LoginViewModel(
     private val database: BookDatabase
 ) : ViewModel() {
 
+    companion object {
+        val PROVIDER_PHONE = "PHONE"
+        val PROVIDER_EMAIL = "EMAIL"
+    }
+
     var appSettings: MutableState<AppSettings?> = mutableStateOf(null)
     var loadComplete: MutableState<Boolean> = mutableStateOf(false)
 

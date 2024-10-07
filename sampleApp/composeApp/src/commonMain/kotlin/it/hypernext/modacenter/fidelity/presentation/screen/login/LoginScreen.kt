@@ -32,6 +32,8 @@ import com.mmk.kmpauth.uihelper.apple.AppleSignInButton
 import com.mmk.kmpauth.uihelper.google.GoogleSignInButton
 import com.mmk.kmpnotifier.notification.NotifierManager
 import dev.gitlive.firebase.auth.FirebaseUser
+import it.hypernext.modacenter.fidelity.presentation.screen.login.LoginViewModel.Companion.PROVIDER_EMAIL
+import it.hypernext.modacenter.fidelity.presentation.screen.login.LoginViewModel.Companion.PROVIDER_PHONE
 import org.koin.compose.viewmodel.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -70,6 +72,7 @@ fun LoginScreen(
                         onSuccess = {
                             println("onSuccess")
                             onLoginSuccess()
+                            viewModelAppSettings.provider.value = PROVIDER_EMAIL
                             // onBookSelect(0)
                         },
                         onError = {}
@@ -81,6 +84,7 @@ fun LoginScreen(
                         onSuccess = {
                             println("onSuccess")
                             onLoginSuccess()
+                            viewModelAppSettings.provider.value = PROVIDER_PHONE
                             // onBookSelect(0)
                         },
                         onError = {}
