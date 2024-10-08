@@ -5,6 +5,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import it.hypernext.modacenter.fidelity.api.InsultCensorClient
 import it.hypernext.modacenter.fidelity.data.BookDatabase
 import it.hypernext.modacenter.fidelity.domain.Book
 import it.hypernext.modacenter.fidelity.util.RequestState
@@ -14,7 +15,8 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
-    private val database: BookDatabase
+    private val database: BookDatabase,
+    private val censorClient: InsultCensorClient
 ) : ViewModel() {
     private var _sortedByFavorite = MutableStateFlow(false)
     val sortedByFavorite: StateFlow<Boolean> = _sortedByFavorite
@@ -25,6 +27,8 @@ class HomeViewModel(
 
     init {
         viewModelScope.launch {
+            println(censorClient.censorWords("Fuck"))
+
             _sortedByFavorite.collectLatest { favorite ->
                 if (favorite) {
                     database.bookDao()

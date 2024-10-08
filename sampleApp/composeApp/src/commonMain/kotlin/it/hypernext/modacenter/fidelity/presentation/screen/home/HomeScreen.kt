@@ -27,6 +27,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -36,6 +37,7 @@ import com.mmk.kmpauth.uihelper.apple.AppleSignInButton
 import com.mmk.kmpauth.uihelper.google.GoogleSignInButton
 import com.mmk.kmpnotifier.notification.NotifierManager
 import dev.gitlive.firebase.auth.FirebaseUser
+import it.hypernext.modacenter.fidelity.api.util.NetworkEError
 import it.hypernext.modacenter.fidelity.presentation.components.ErrorView
 import it.hypernext.modacenter.fidelity.presentation.components.LoadingView
 import it.hypernext.modacenter.fidelity.presentation.screen.component.BookView
@@ -67,6 +69,23 @@ fun HomeScreen(
             }
         })
         myPushNotificationToken = NotifierManager.getPushNotifier().getToken() ?: ""
+    }
+
+    var censoredText by remember {
+        mutableStateOf<String?>(null)
+    }
+    var uncensoredText by remember {
+        mutableStateOf("")
+    }
+    var isLoading by remember {
+        mutableStateOf(false)
+    }
+    var errorMessage by remember {
+        mutableStateOf<NetworkEError?>(null)
+    }
+
+    val client = remember {
+        // InsultCensorClient(createHttpClient(OkHttp.create()))
     }
 
     Scaffold(
@@ -105,6 +124,16 @@ fun HomeScreen(
             }
         }
     ) {
+        censoredText?.let {
+            Text(it)
+        }
+        errorMessage?.let {
+            Text(
+                text = it.name,
+                color = Color.Red
+            )
+        }
+
         books.DisplayResult(
             onLoading = { LoadingView() },
             onError = { ErrorView(it) },

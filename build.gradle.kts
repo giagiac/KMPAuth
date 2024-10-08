@@ -12,6 +12,8 @@ plugins {
     // alias(libs.plugins.dokka) apply false
     alias(libs.plugins.googleServices) apply false
     alias(libs.plugins.kotlinx.binary.validator)
+
+    alias(libs.plugins.kotlin.serialization) apply false
 }
 
 
