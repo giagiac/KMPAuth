@@ -50,7 +50,8 @@ import org.koin.compose.viewmodel.koinViewModel
 @Composable
 fun HomeScreen(
     onBookSelect: (Int) -> Unit,
-    onCreateClick: () -> Unit
+    onCreateClick: () -> Unit,
+    bottomBar: @Composable () -> Unit,
 ) {
     val scope = rememberCoroutineScope()
     val listState = rememberLazyListState()
@@ -66,6 +67,7 @@ fun HomeScreen(
             override fun onNewToken(token: String) {
                 myPushNotificationToken = token
                 println("onNewToken: $token")
+                viewModel.sendData(token)
             }
         })
         myPushNotificationToken = NotifierManager.getPushNotifier().getToken() ?: ""
@@ -122,48 +124,50 @@ fun HomeScreen(
                     contentDescription = "Add Icon"
                 )
             }
-        }
-    ) {
-        censoredText?.let {
-            Text(it)
-        }
-        errorMessage?.let {
-            Text(
-                text = it.name,
-                color = Color.Red
+        },
+        bottomBar = bottomBar,
+        content = {
+            censoredText?.let {
+                Text(it)
+            }
+            errorMessage?.let {
+                Text(
+                    text = it.name,
+                    color = Color.Red
+                )
+            }
+
+            books.DisplayResult(
+                onLoading = { LoadingView() },
+                onError = { ErrorView(it) },
+                onSuccess = { data ->
+                    if (data.isNotEmpty()) {
+                        LazyColumn(
+                            modifier = Modifier
+                                .padding(all = 12.dp)
+                                .padding(
+                                    top = it.calculateTopPadding(),
+                                    bottom = it.calculateBottomPadding()
+                                ),
+                            verticalArrangement = Arrangement.spacedBy(12.dp)
+                        ) {
+                            items(
+                                items = data,
+                                key = { it._id }
+                            ) {
+                                BookView(
+                                    book = it,
+                                    onClick = { onBookSelect(it._id) }
+                                )
+                            }
+                        }
+                    } else {
+                        ErrorView()
+                    }
+                }
             )
         }
-
-        books.DisplayResult(
-            onLoading = { LoadingView() },
-            onError = { ErrorView(it) },
-            onSuccess = { data ->
-                if (data.isNotEmpty()) {
-                    LazyColumn(
-                        modifier = Modifier
-                            .padding(all = 12.dp)
-                            .padding(
-                                top = it.calculateTopPadding(),
-                                bottom = it.calculateBottomPadding()
-                            ),
-                        verticalArrangement = Arrangement.spacedBy(12.dp)
-                    ) {
-                        items(
-                            items = data,
-                            key = { it._id }
-                        ) {
-                            BookView(
-                                book = it,
-                                onClick = { onBookSelect(it._id) }
-                            )
-                        }
-                    }
-                } else {
-                    ErrorView()
-                }
-            }
-        )
-    }
+    )
 }
 
 @Composable

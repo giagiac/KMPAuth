@@ -13,7 +13,7 @@ import it.hypernext.modacenter.fidelity.presentation.screen.manage.ManageScreen
 
 @Composable
 fun SetupNavGraph(navController: NavHostController, startDestination: String) {
-    
+
     NavHost(
         navController = navController,
         startDestination = startDestination // Screen.Login.route
@@ -36,6 +36,9 @@ fun SetupNavGraph(navController: NavHostController, startDestination: String) {
                 },
                 onCreateClick = {
                     navController.navigate(Screen.Manage.passId())
+                },
+                bottomBar = {
+                    BottomBar(navController)
                 }
             )
         }
@@ -53,7 +56,10 @@ fun SetupNavGraph(navController: NavHostController, startDestination: String) {
             val id = it.arguments?.getInt(BOOK_ID_ARG) ?: -1
             ManageScreen(
                 id = id,
-                onBackClick = { navController.navigateUp() }
+                onBackClick = { navController.navigateUp() },
+                bottomBar = {
+                    BottomBar(navController)
+                }
             )
         }
         composable(

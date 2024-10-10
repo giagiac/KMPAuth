@@ -30,7 +30,8 @@ import org.koin.compose.viewmodel.koinViewModel
 @Composable
 fun ManageScreen(
     id: Int,
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
+    bottomBar: @Composable () -> Unit
 ) {
     val viewModel = koinViewModel<ManageViewModel>()
     var imageField by viewModel.imageField
@@ -41,6 +42,7 @@ fun ManageScreen(
     var authorField by viewModel.authorField
 
     Scaffold(
+        bottomBar = bottomBar,
         topBar = {
             TopAppBar(
                 title = {
