@@ -14,6 +14,7 @@ plugins {
 }
 
 kotlin {
+    tasks.create("testClasses")
 
     androidTarget {
         compilations.all {
@@ -86,7 +87,10 @@ kotlin {
     }
 }
 
+
+
 android {
+
     signingConfigs {
         getByName("debug") {
             storeFile = file("../../debug.keystore")
@@ -142,4 +146,10 @@ dependencies {
     add("kspIosX64", libs.room.compiler)
     add("kspIosArm64", libs.room.compiler)
     add("kspIosSimulatorArm64", libs.room.compiler)
+}
+
+compose.resources {
+    publicResClass = true
+    packageOfResClass = "it.hypernext.modacenter.fidelity"
+    generateResClass = auto
 }

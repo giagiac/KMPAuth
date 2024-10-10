@@ -9,9 +9,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.outlined.AccountBox
-import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -40,16 +38,20 @@ fun BottomBar(navController: NavHostController) {
             selected = selected,
             onClick = { navController.navigate(route) },
             icon = {
-                val icon = if (selected) {
-                    Icons.Default.Home
-                } else {
-                    Icons.Outlined.Home
-                }
-                Icon(
-                    imageVector = icon,
-                    modifier = Modifier.size(16.dp),
-                    contentDescription = null
-                )
+//                val icon = if (selected) {
+//                    Image(
+//                        modifier = Modifier.size(20.dp),
+//                        painter = painterResource(it.hypernext.modacenter.fidelity.Res.drawable.ic_google),
+//                        contentDescription = "appleIcon"
+//                    )
+//                } else {
+//                    Icons.Outlined.Home
+//                }
+//                Icon(
+//                    imageVector = Res.drawable.ic_google,
+//                    modifier = Modifier.size(16.dp),
+//                    contentDescription = null
+//                )
             },
             label = {
                 Text(
