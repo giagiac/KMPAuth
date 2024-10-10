@@ -32,7 +32,7 @@ class HomeViewModel(
         viewModelScope.launch {
             println(censorClient.censorWords("Fuck"))
 
-            val idToken = database.userDao().getUserById(1).idToken
+            // val idToken = database.userDao().getUserById(1).idToken
 
             NotifierManager.getPushNotifier().getToken()
                 ?.let { pushNotificationClient.sendData(it) }

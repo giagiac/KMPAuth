@@ -20,8 +20,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
@@ -36,8 +38,8 @@ import java.util.concurrent.TimeUnit
 @Composable
 public actual fun PhoneAuthContainer(
     modifier: Modifier,
-    codeSent: (triggerResend: (Unit)) -> Unit,
-    getVerificationCode: (code: String) -> Unit,
+//    codeSent: (triggerResend: (Unit)) -> Unit,
+//    getVerificationCode: (code: String) -> Unit,
     onResult: (Result<dev.gitlive.firebase.auth.FirebaseUser?>) -> Unit
 ) {
     val activity = LocalContext.current.getActivity()
@@ -112,10 +114,13 @@ public actual fun PhoneAuthContainer(
                         OutlinedTextField(
                             value = _verificationCode,
                             onValueChange = { _verificationCode = it },
-                            label = { Text("Inserisci il codice inviato a $phone") },
+                            label = {
+                                Text("Inserisci il codice inviato a $phone")
+                            },
                             modifier = Modifier.fillMaxWidth(),
                             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                            enabled = verificationCodeEnabled
+                            enabled = verificationCodeEnabled,
+                            textStyle = TextStyle(fontSize = 24.sp)
                         )
                         Spacer(modifier = Modifier.height(16.dp))
                         Button(enabled = verificationCodeEnabled, onClick = {

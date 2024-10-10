@@ -8,7 +8,7 @@ import dev.gitlive.firebase.auth.FirebaseUser
 public expect fun PhoneAuthContainer(
     modifier: Modifier = Modifier,
     // onResult: (Result<FirebaseUser?>) -> Unit,
-    codeSent: (triggerResend: (Unit)) -> Unit,
-    getVerificationCode: (code: String) -> Unit,
+//    codeSent: (triggerResend: (Unit)) -> Unit,
+//    getVerificationCode: (code: String) -> Unit,
     onResult: (Result<FirebaseUser?>) -> Unit
 )

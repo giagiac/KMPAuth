@@ -24,8 +24,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 public data class Country(val code: String, val flag: String, val name: String)
 
@@ -61,7 +63,8 @@ public fun PhoneNumbers(enabled: Boolean, getPhoneNumber: (phone: String) -> Uni
                             Icon(Icons.Filled.ArrowDropDown, contentDescription = "Mostra opzioni")
                         }
                     },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
+                    textStyle = TextStyle(fontSize = 24.sp)
                 )
                 DropdownMenu(
                     expanded = expanded,
@@ -73,7 +76,10 @@ public fun PhoneNumbers(enabled: Boolean, getPhoneNumber: (phone: String) -> Uni
                             phoneNumber = "" // Resetta il numero di telefono quando si cambia paese
                             expanded = false
                         }) {
-                            Text("${country.flag} ${country.name} (${country.code})")
+                            Text(
+                                "${country.flag} ${country.name} (${country.code})",
+                                fontSize = 24.sp
+                            )
                         }
                     }
                 }
@@ -96,7 +102,8 @@ public fun PhoneNumbers(enabled: Boolean, getPhoneNumber: (phone: String) -> Uni
                 label = { Text("Numero di telefono") },
                 isError = phoneNumberError,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(1f),
+                textStyle = TextStyle(fontSize = 24.sp)
             )
         }
         Spacer(modifier = Modifier.height(16.dp))

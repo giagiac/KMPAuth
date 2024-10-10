@@ -33,8 +33,8 @@ import platform.Foundation.NSError
 @Composable
 public actual fun PhoneAuthContainer(
     modifier: Modifier,
-    codeSent: (triggerResend: (Unit)) -> Unit,
-    getVerificationCode: (code: String) -> Unit,
+//    codeSent: (triggerResend: (Unit)) -> Unit,
+//    getVerificationCode: (code: String) -> Unit,
     onResult: (Result<FirebaseUser?>) -> Unit
 ) {
     val auth = Firebase.auth.ios
