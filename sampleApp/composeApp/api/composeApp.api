@@ -6,39 +6,6 @@ public final class it/hypernext/modacenter/fidelity/AppInitializer {
 
 public final class it/hypernext/modacenter/fidelity/AppKt {
 	public static final fun App (Landroidx/compose/runtime/Composer;I)V
-	public static final fun AuthUiHelperButtonsAndFirebaseAuth (Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
-	public static final fun IconOnlyButtonsAndFirebaseAuth (Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
-}
-
-public final class it/hypernext/modacenter/fidelity/ComposableSingletons$AppKt {
-	public static final field INSTANCE Lit/hypernext/modacenter/fidelity/ComposableSingletons$AppKt;
-	public static field lambda-1 Lkotlin/jvm/functions/Function3;
-	public static field lambda-10 Lkotlin/jvm/functions/Function3;
-	public static field lambda-11 Lkotlin/jvm/functions/Function3;
-	public static field lambda-12 Lkotlin/jvm/functions/Function3;
-	public static field lambda-13 Lkotlin/jvm/functions/Function3;
-	public static field lambda-2 Lkotlin/jvm/functions/Function3;
-	public static field lambda-3 Lkotlin/jvm/functions/Function3;
-	public static field lambda-4 Lkotlin/jvm/functions/Function3;
-	public static field lambda-5 Lkotlin/jvm/functions/Function3;
-	public static field lambda-6 Lkotlin/jvm/functions/Function3;
-	public static field lambda-7 Lkotlin/jvm/functions/Function3;
-	public static field lambda-8 Lkotlin/jvm/functions/Function3;
-	public static field lambda-9 Lkotlin/jvm/functions/Function2;
-	public fun <init> ()V
-	public final fun getLambda-1$composeApp_release ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-10$composeApp_release ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-11$composeApp_release ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-12$composeApp_release ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-13$composeApp_release ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-2$composeApp_release ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-3$composeApp_release ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-4$composeApp_release ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-5$composeApp_release ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-6$composeApp_release ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-7$composeApp_release ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-8$composeApp_release ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-9$composeApp_release ()Lkotlin/jvm/functions/Function2;
 }
 
 public final class it/hypernext/modacenter/fidelity/ComposableSingletons$MainActivityKt {
@@ -46,6 +13,12 @@ public final class it/hypernext/modacenter/fidelity/ComposableSingletons$MainAct
 	public static field lambda-1 Lkotlin/jvm/functions/Function2;
 	public fun <init> ()V
 	public final fun getLambda-1$composeApp_release ()Lkotlin/jvm/functions/Function2;
+}
+
+public final class it/hypernext/modacenter/fidelity/Drawable0_commonMainKt {
+	public static final fun getIc_apple_logo_black (Lit/hypernext/modacenter/fidelity/Res$drawable;)Lorg/jetbrains/compose/resources/DrawableResource;
+	public static final fun getIc_apple_logo_white (Lit/hypernext/modacenter/fidelity/Res$drawable;)Lorg/jetbrains/compose/resources/DrawableResource;
+	public static final fun getIc_google (Lit/hypernext/modacenter/fidelity/Res$drawable;)Lorg/jetbrains/compose/resources/DrawableResource;
 }
 
 public final class it/hypernext/modacenter/fidelity/MainActivity : androidx/activity/ComponentActivity {
@@ -63,7 +36,630 @@ public final class it/hypernext/modacenter/fidelity/MainApplication : android/ap
 	public fun onCreate ()V
 }
 
-public final class it/hypernext/modacenter/fidelity/Platform_androidKt {
+public final class it/hypernext/modacenter/fidelity/PlatformKt {
 	public static final fun onApplicationStartPlatformSpecific ()V
+}
+
+public final class it/hypernext/modacenter/fidelity/Res {
+	public static final field $stable I
+	public static final field INSTANCE Lit/hypernext/modacenter/fidelity/Res;
+	public final fun getUri (Ljava/lang/String;)Ljava/lang/String;
+	public final fun readBytes (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class it/hypernext/modacenter/fidelity/Res$array {
+	public static final field $stable I
+	public static final field INSTANCE Lit/hypernext/modacenter/fidelity/Res$array;
+}
+
+public final class it/hypernext/modacenter/fidelity/Res$drawable {
+	public static final field $stable I
+	public static final field INSTANCE Lit/hypernext/modacenter/fidelity/Res$drawable;
+}
+
+public final class it/hypernext/modacenter/fidelity/Res$font {
+	public static final field $stable I
+	public static final field INSTANCE Lit/hypernext/modacenter/fidelity/Res$font;
+}
+
+public final class it/hypernext/modacenter/fidelity/Res$plurals {
+	public static final field $stable I
+	public static final field INSTANCE Lit/hypernext/modacenter/fidelity/Res$plurals;
+}
+
+public final class it/hypernext/modacenter/fidelity/Res$string {
+	public static final field $stable I
+	public static final field INSTANCE Lit/hypernext/modacenter/fidelity/Res$string;
+}
+
+public final class it/hypernext/modacenter/fidelity/api/CreateHttpClient_androidKt {
+	public static final fun createHttpClient ()Lio/ktor/client/HttpClient;
+}
+
+public final class it/hypernext/modacenter/fidelity/api/InsultCensorClient {
+	public static final field $stable I
+	public fun <init> (Lio/ktor/client/HttpClient;)V
+	public final fun censorWords (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class it/hypernext/modacenter/fidelity/api/PushNotificationClient {
+	public static final field $stable I
+	public fun <init> (Lio/ktor/client/HttpClient;)V
+	public final fun sendData (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class it/hypernext/modacenter/fidelity/api/datamodel/CensoredText {
+	public static final field $stable I
+	public static final field Companion Lit/hypernext/modacenter/fidelity/api/datamodel/CensoredText$Companion;
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lit/hypernext/modacenter/fidelity/api/datamodel/CensoredText;
+	public static synthetic fun copy$default (Lit/hypernext/modacenter/fidelity/api/datamodel/CensoredText;Ljava/lang/String;ILjava/lang/Object;)Lit/hypernext/modacenter/fidelity/api/datamodel/CensoredText;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getResult ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class it/hypernext/modacenter/fidelity/api/datamodel/CensoredText$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field $stable I
+	public static final field INSTANCE Lit/hypernext/modacenter/fidelity/api/datamodel/CensoredText$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lit/hypernext/modacenter/fidelity/api/datamodel/CensoredText;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lit/hypernext/modacenter/fidelity/api/datamodel/CensoredText;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class it/hypernext/modacenter/fidelity/api/datamodel/CensoredText$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class it/hypernext/modacenter/fidelity/api/datamodel/DataUser {
+	public static final field $stable I
+	public static final field Companion Lit/hypernext/modacenter/fidelity/api/datamodel/DataUser$Companion;
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lit/hypernext/modacenter/fidelity/api/datamodel/DataUser;
+	public static synthetic fun copy$default (Lit/hypernext/modacenter/fidelity/api/datamodel/DataUser;Ljava/lang/String;ILjava/lang/Object;)Lit/hypernext/modacenter/fidelity/api/datamodel/DataUser;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getToken ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class it/hypernext/modacenter/fidelity/api/datamodel/DataUser$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field $stable I
+	public static final field INSTANCE Lit/hypernext/modacenter/fidelity/api/datamodel/DataUser$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lit/hypernext/modacenter/fidelity/api/datamodel/DataUser;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lit/hypernext/modacenter/fidelity/api/datamodel/DataUser;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class it/hypernext/modacenter/fidelity/api/datamodel/DataUser$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public abstract interface class it/hypernext/modacenter/fidelity/api/util/EError {
+}
+
+public final class it/hypernext/modacenter/fidelity/api/util/NetworkEError : java/lang/Enum, it/hypernext/modacenter/fidelity/api/util/EError {
+	public static final field CONFLICT Lit/hypernext/modacenter/fidelity/api/util/NetworkEError;
+	public static final field NO_INTERNET Lit/hypernext/modacenter/fidelity/api/util/NetworkEError;
+	public static final field PAYLOAD_TOO_LARGE Lit/hypernext/modacenter/fidelity/api/util/NetworkEError;
+	public static final field REQUEST_TIMEOUT Lit/hypernext/modacenter/fidelity/api/util/NetworkEError;
+	public static final field SERIALIZATION Lit/hypernext/modacenter/fidelity/api/util/NetworkEError;
+	public static final field SERVER_ERROR Lit/hypernext/modacenter/fidelity/api/util/NetworkEError;
+	public static final field TOO_MANY_REQUESTS Lit/hypernext/modacenter/fidelity/api/util/NetworkEError;
+	public static final field UNAUTHORIZED Lit/hypernext/modacenter/fidelity/api/util/NetworkEError;
+	public static final field UNKNOWN Lit/hypernext/modacenter/fidelity/api/util/NetworkEError;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lit/hypernext/modacenter/fidelity/api/util/NetworkEError;
+	public static fun values ()[Lit/hypernext/modacenter/fidelity/api/util/NetworkEError;
+}
+
+public abstract interface class it/hypernext/modacenter/fidelity/api/util/Result {
+}
+
+public final class it/hypernext/modacenter/fidelity/api/util/Result$Error : it/hypernext/modacenter/fidelity/api/util/Result {
+	public static final field $stable I
+	public fun <init> (Lit/hypernext/modacenter/fidelity/api/util/EError;)V
+	public final fun component1 ()Lit/hypernext/modacenter/fidelity/api/util/EError;
+	public final fun copy (Lit/hypernext/modacenter/fidelity/api/util/EError;)Lit/hypernext/modacenter/fidelity/api/util/Result$Error;
+	public static synthetic fun copy$default (Lit/hypernext/modacenter/fidelity/api/util/Result$Error;Lit/hypernext/modacenter/fidelity/api/util/EError;ILjava/lang/Object;)Lit/hypernext/modacenter/fidelity/api/util/Result$Error;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getError ()Lit/hypernext/modacenter/fidelity/api/util/EError;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class it/hypernext/modacenter/fidelity/api/util/Result$Success : it/hypernext/modacenter/fidelity/api/util/Result {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/Object;)V
+	public final fun component1 ()Ljava/lang/Object;
+	public final fun copy (Ljava/lang/Object;)Lit/hypernext/modacenter/fidelity/api/util/Result$Success;
+	public static synthetic fun copy$default (Lit/hypernext/modacenter/fidelity/api/util/Result$Success;Ljava/lang/Object;ILjava/lang/Object;)Lit/hypernext/modacenter/fidelity/api/util/Result$Success;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getData ()Ljava/lang/Object;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class it/hypernext/modacenter/fidelity/api/util/ResultKt {
+	public static final fun asEmptyDataResult (Lit/hypernext/modacenter/fidelity/api/util/Result;)Lit/hypernext/modacenter/fidelity/api/util/Result;
+	public static final fun map (Lit/hypernext/modacenter/fidelity/api/util/Result;Lkotlin/jvm/functions/Function1;)Lit/hypernext/modacenter/fidelity/api/util/Result;
+	public static final fun onError (Lit/hypernext/modacenter/fidelity/api/util/Result;Lkotlin/jvm/functions/Function1;)Lit/hypernext/modacenter/fidelity/api/util/Result;
+	public static final fun onSuccess (Lit/hypernext/modacenter/fidelity/api/util/Result;Lkotlin/jvm/functions/Function1;)Lit/hypernext/modacenter/fidelity/api/util/Result;
+}
+
+public abstract class it/hypernext/modacenter/fidelity/data/BookDatabase : androidx/room/RoomDatabase {
+	public static final field $stable I
+	public fun <init> ()V
+	public abstract fun appSettingsDao ()Lit/hypernext/modacenter/fidelity/data/dao/AppSettingsDao;
+	public abstract fun bookDao ()Lit/hypernext/modacenter/fidelity/data/dao/BookDao;
+	public abstract fun userDao ()Lit/hypernext/modacenter/fidelity/data/dao/UserDao;
+}
+
+public final class it/hypernext/modacenter/fidelity/data/BookDatabaseConstructor : androidx/room/RoomDatabaseConstructor {
+	public static final field $stable I
+	public static final field INSTANCE Lit/hypernext/modacenter/fidelity/data/BookDatabaseConstructor;
+	public synthetic fun initialize ()Landroidx/room/RoomDatabase;
+	public fun initialize ()Lit/hypernext/modacenter/fidelity/data/BookDatabase;
+}
+
+public final class it/hypernext/modacenter/fidelity/data/BookDatabase_Impl : it/hypernext/modacenter/fidelity/data/BookDatabase {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun appSettingsDao ()Lit/hypernext/modacenter/fidelity/data/dao/AppSettingsDao;
+	public fun bookDao ()Lit/hypernext/modacenter/fidelity/data/dao/BookDao;
+	public fun clearAllTables ()V
+	public fun createAutoMigrations (Ljava/util/Map;)Ljava/util/List;
+	public synthetic fun createOpenDelegate ()Landroidx/room/RoomOpenDelegateMarker;
+	public fun getRequiredAutoMigrationSpecClasses ()Ljava/util/Set;
+	public fun userDao ()Lit/hypernext/modacenter/fidelity/data/dao/UserDao;
+}
+
+public final class it/hypernext/modacenter/fidelity/data/BookTypeConverter {
+	public static final field $stable I
+	public fun <init> ()V
+	public final fun fromList (Ljava/util/List;)Ljava/lang/String;
+	public final fun fromString (Ljava/lang/String;)Ljava/util/List;
+}
+
+public final class it/hypernext/modacenter/fidelity/data/GetRoomDatabaseKt {
+	public static final fun getRoomDatabase (Landroidx/room/RoomDatabase$Builder;)Lit/hypernext/modacenter/fidelity/data/BookDatabase;
+}
+
+public abstract interface class it/hypernext/modacenter/fidelity/data/dao/AppSettingsDao {
+	public abstract fun deleteAppSettingsById (ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun getAppSettings ()Lkotlinx/coroutines/flow/Flow;
+	public abstract fun insertAppSettings (Lit/hypernext/modacenter/fidelity/domain/AppSettings;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun updateAppSettings (Lit/hypernext/modacenter/fidelity/domain/AppSettings;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class it/hypernext/modacenter/fidelity/data/dao/AppSettingsDao_Impl : it/hypernext/modacenter/fidelity/data/dao/AppSettingsDao {
+	public static final field $stable I
+	public static final field Companion Lit/hypernext/modacenter/fidelity/data/dao/AppSettingsDao_Impl$Companion;
+	public fun <init> (Landroidx/room/RoomDatabase;)V
+	public fun deleteAppSettingsById (ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun getAppSettings ()Lkotlinx/coroutines/flow/Flow;
+	public fun insertAppSettings (Lit/hypernext/modacenter/fidelity/domain/AppSettings;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun updateAppSettings (Lit/hypernext/modacenter/fidelity/domain/AppSettings;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class it/hypernext/modacenter/fidelity/data/dao/AppSettingsDao_Impl$Companion {
+	public final fun getRequiredConverters ()Ljava/util/List;
+}
+
+public abstract interface class it/hypernext/modacenter/fidelity/data/dao/BookDao {
+	public abstract fun deleteBookById (ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun getBookById (ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun getBookByIdFlow (I)Lkotlinx/coroutines/flow/Flow;
+	public abstract fun insertBook (Lit/hypernext/modacenter/fidelity/domain/Book;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun readAllBooks ()Lkotlinx/coroutines/flow/Flow;
+	public abstract fun readAllBooksSortByFavorite ()Lkotlinx/coroutines/flow/Flow;
+	public abstract fun setFavoriteBook (ZILkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun updateBook (Lit/hypernext/modacenter/fidelity/domain/Book;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class it/hypernext/modacenter/fidelity/data/dao/BookDao_Impl : it/hypernext/modacenter/fidelity/data/dao/BookDao {
+	public static final field $stable I
+	public static final field Companion Lit/hypernext/modacenter/fidelity/data/dao/BookDao_Impl$Companion;
+	public fun <init> (Landroidx/room/RoomDatabase;)V
+	public fun deleteBookById (ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun getBookById (ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun getBookByIdFlow (I)Lkotlinx/coroutines/flow/Flow;
+	public fun insertBook (Lit/hypernext/modacenter/fidelity/domain/Book;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun readAllBooks ()Lkotlinx/coroutines/flow/Flow;
+	public fun readAllBooksSortByFavorite ()Lkotlinx/coroutines/flow/Flow;
+	public fun setFavoriteBook (ZILkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun updateBook (Lit/hypernext/modacenter/fidelity/domain/Book;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class it/hypernext/modacenter/fidelity/data/dao/BookDao_Impl$Companion {
+	public final fun getRequiredConverters ()Ljava/util/List;
+}
+
+public abstract interface class it/hypernext/modacenter/fidelity/data/dao/UserDao {
+	public abstract fun deleteUserById (ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun getUserById (ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun insertUser (Lit/hypernext/modacenter/fidelity/domain/User;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun updateUser (Lit/hypernext/modacenter/fidelity/domain/User;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class it/hypernext/modacenter/fidelity/data/dao/UserDao_Impl : it/hypernext/modacenter/fidelity/data/dao/UserDao {
+	public static final field $stable I
+	public static final field Companion Lit/hypernext/modacenter/fidelity/data/dao/UserDao_Impl$Companion;
+	public fun <init> (Landroidx/room/RoomDatabase;)V
+	public fun deleteUserById (ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun getUserById (ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun insertUser (Lit/hypernext/modacenter/fidelity/domain/User;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun updateUser (Lit/hypernext/modacenter/fidelity/domain/User;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class it/hypernext/modacenter/fidelity/data/dao/UserDao_Impl$Companion {
+	public final fun getRequiredConverters ()Ljava/util/List;
+}
+
+public final class it/hypernext/modacenter/fidelity/database/DatabaseBuilder_androidKt {
+	public static final fun getDatabaseBuilder (Landroid/content/Context;)Landroidx/room/RoomDatabase$Builder;
+}
+
+public final class it/hypernext/modacenter/fidelity/di/KoinModuleKt {
+	public static final fun getSharedModule ()Lorg/koin/core/module/Module;
+	public static final fun initializeKoin (Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun initializeKoin$default (Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+}
+
+public final class it/hypernext/modacenter/fidelity/di/KoinModuleNetwork_androidKt {
+	public static final fun getClient ()Lio/ktor/client/HttpClient;
+}
+
+public final class it/hypernext/modacenter/fidelity/di/KoinModule_androidKt {
+	public static final fun getTargetModule ()Lorg/koin/core/module/Module;
+}
+
+public final class it/hypernext/modacenter/fidelity/domain/AppSettings {
+	public static final field $stable I
+	public static final field Companion Lit/hypernext/modacenter/fidelity/domain/AppSettings$Companion;
+	public static final field ID I
+	public fun <init> (IIZ)V
+	public synthetic fun <init> (IIZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()I
+	public final fun component2 ()I
+	public final fun component3 ()Z
+	public final fun copy (IIZ)Lit/hypernext/modacenter/fidelity/domain/AppSettings;
+	public static synthetic fun copy$default (Lit/hypernext/modacenter/fidelity/domain/AppSettings;IIZILjava/lang/Object;)Lit/hypernext/modacenter/fidelity/domain/AppSettings;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDarkMode ()Z
+	public final fun get_id ()I
+	public final fun get_idUser ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class it/hypernext/modacenter/fidelity/domain/AppSettings$Companion {
+}
+
+public final class it/hypernext/modacenter/fidelity/domain/Book {
+	public static final field $stable I
+	public fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;Ljava/util/List;Ljava/lang/String;)V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;Ljava/util/List;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()I
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Z
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Ljava/util/List;
+	public final fun component8 ()Ljava/lang/String;
+	public final fun copy (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;Ljava/util/List;Ljava/lang/String;)Lit/hypernext/modacenter/fidelity/domain/Book;
+	public static synthetic fun copy$default (Lit/hypernext/modacenter/fidelity/domain/Book;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;Ljava/util/List;Ljava/lang/String;ILjava/lang/Object;)Lit/hypernext/modacenter/fidelity/domain/Book;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAuthor ()Ljava/lang/String;
+	public final fun getCategory ()Ljava/lang/String;
+	public final fun getImage ()Ljava/lang/String;
+	public final fun getSummary ()Ljava/lang/String;
+	public final fun getTags ()Ljava/util/List;
+	public final fun getTitle ()Ljava/lang/String;
+	public final fun get_id ()I
+	public fun hashCode ()I
+	public final fun isFavorite ()Z
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class it/hypernext/modacenter/fidelity/domain/User {
+	public static final field $stable I
+	public fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()I
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Z
+	public final fun copy (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)Lit/hypernext/modacenter/fidelity/domain/User;
+	public static synthetic fun copy$default (Lit/hypernext/modacenter/fidelity/domain/User;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZILjava/lang/Object;)Lit/hypernext/modacenter/fidelity/domain/User;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getEmail ()Ljava/lang/String;
+	public final fun getIdToken ()Ljava/lang/String;
+	public final fun getPhoneNumber ()Ljava/lang/String;
+	public final fun getPrivacy ()Z
+	public final fun getProvider ()Ljava/lang/String;
+	public final fun get_id ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class it/hypernext/modacenter/fidelity/navigation/BottomBarKt {
+	public static final fun BottomBar (Landroidx/navigation/NavHostController;Landroidx/compose/runtime/Composer;I)V
+}
+
+public final class it/hypernext/modacenter/fidelity/navigation/ComposableSingletons$BottomBarKt {
+	public static final field INSTANCE Lit/hypernext/modacenter/fidelity/navigation/ComposableSingletons$BottomBarKt;
+	public static field lambda-1 Lkotlin/jvm/functions/Function2;
+	public static field lambda-2 Lkotlin/jvm/functions/Function2;
+	public static field lambda-3 Lkotlin/jvm/functions/Function2;
+	public fun <init> ()V
+	public final fun getLambda-1$composeApp_release ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda-2$composeApp_release ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda-3$composeApp_release ()Lkotlin/jvm/functions/Function2;
+}
+
+public final class it/hypernext/modacenter/fidelity/navigation/NavGraphKt {
+	public static final fun SetupNavGraph (Landroidx/navigation/NavHostController;Ljava/lang/String;Landroidx/compose/runtime/Composer;I)V
+}
+
+public abstract class it/hypernext/modacenter/fidelity/navigation/Screen {
+	public static final field $stable I
+	public synthetic fun <init> (Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getRoute ()Ljava/lang/String;
+}
+
+public final class it/hypernext/modacenter/fidelity/navigation/Screen$Details : it/hypernext/modacenter/fidelity/navigation/Screen {
+	public static final field $stable I
+	public static final field INSTANCE Lit/hypernext/modacenter/fidelity/navigation/Screen$Details;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public final fun passId (I)Ljava/lang/String;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class it/hypernext/modacenter/fidelity/navigation/Screen$Home : it/hypernext/modacenter/fidelity/navigation/Screen {
+	public static final field $stable I
+	public static final field INSTANCE Lit/hypernext/modacenter/fidelity/navigation/Screen$Home;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class it/hypernext/modacenter/fidelity/navigation/Screen$Login : it/hypernext/modacenter/fidelity/navigation/Screen {
+	public static final field $stable I
+	public static final field INSTANCE Lit/hypernext/modacenter/fidelity/navigation/Screen$Login;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class it/hypernext/modacenter/fidelity/navigation/Screen$Manage : it/hypernext/modacenter/fidelity/navigation/Screen {
+	public static final field $stable I
+	public static final field INSTANCE Lit/hypernext/modacenter/fidelity/navigation/Screen$Manage;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public final fun passId (I)Ljava/lang/String;
+	public static synthetic fun passId$default (Lit/hypernext/modacenter/fidelity/navigation/Screen$Manage;IILjava/lang/Object;)Ljava/lang/String;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class it/hypernext/modacenter/fidelity/navigation/ScreenKt {
+	public static final field BOOK_ID_ARG Ljava/lang/String;
+}
+
+public final class it/hypernext/modacenter/fidelity/presentation/components/ErrorViewKt {
+	public static final fun ErrorView (Ljava/lang/String;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class it/hypernext/modacenter/fidelity/presentation/components/LoadingViewKt {
+	public static final fun LoadingView (Landroidx/compose/runtime/Composer;I)V
+}
+
+public final class it/hypernext/modacenter/fidelity/presentation/screen/component/BookViewKt {
+	public static final fun BookView (Lit/hypernext/modacenter/fidelity/domain/Book;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;I)V
+}
+
+public final class it/hypernext/modacenter/fidelity/presentation/screen/details/ComposableSingletons$DetailsScreenKt {
+	public static final field INSTANCE Lit/hypernext/modacenter/fidelity/presentation/screen/details/ComposableSingletons$DetailsScreenKt;
+	public static field lambda-1 Lkotlin/jvm/functions/Function2;
+	public static field lambda-2 Lkotlin/jvm/functions/Function2;
+	public static field lambda-3 Lkotlin/jvm/functions/Function2;
+	public static field lambda-4 Lkotlin/jvm/functions/Function2;
+	public fun <init> ()V
+	public final fun getLambda-1$composeApp_release ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda-2$composeApp_release ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda-3$composeApp_release ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda-4$composeApp_release ()Lkotlin/jvm/functions/Function2;
+}
+
+public final class it/hypernext/modacenter/fidelity/presentation/screen/details/DetailsScreenKt {
+	public static final fun DetailsScreen (Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;I)V
+}
+
+public final class it/hypernext/modacenter/fidelity/presentation/screen/details/DetailsViewModel : androidx/lifecycle/ViewModel {
+	public static final field $stable I
+	public fun <init> (Lit/hypernext/modacenter/fidelity/data/BookDatabase;Landroidx/lifecycle/SavedStateHandle;)V
+	public final fun deleteBook ()V
+	public final fun getSelectedBook ()Landroidx/compose/runtime/MutableState;
+	public final fun isFavorite ()Landroidx/compose/runtime/MutableState;
+	public final fun setFavoriteBook ()V
+}
+
+public final class it/hypernext/modacenter/fidelity/presentation/screen/home/ComposableSingletons$HomeScreenKt {
+	public static final field INSTANCE Lit/hypernext/modacenter/fidelity/presentation/screen/home/ComposableSingletons$HomeScreenKt;
+	public static field lambda-1 Lkotlin/jvm/functions/Function2;
+	public static field lambda-2 Lkotlin/jvm/functions/Function2;
+	public static field lambda-3 Lkotlin/jvm/functions/Function2;
+	public static field lambda-4 Lkotlin/jvm/functions/Function3;
+	public static field lambda-5 Lkotlin/jvm/functions/Function3;
+	public static field lambda-6 Lkotlin/jvm/functions/Function3;
+	public fun <init> ()V
+	public final fun getLambda-1$composeApp_release ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda-2$composeApp_release ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda-3$composeApp_release ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda-4$composeApp_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-5$composeApp_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-6$composeApp_release ()Lkotlin/jvm/functions/Function3;
+}
+
+public final class it/hypernext/modacenter/fidelity/presentation/screen/home/HomeScreenKt {
+	public static final fun AuthUiHelperButtonsAndFirebaseAuth (Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
+	public static final fun HomeScreen (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;I)V
+}
+
+public final class it/hypernext/modacenter/fidelity/presentation/screen/home/HomeViewModel : androidx/lifecycle/ViewModel {
+	public static final field $stable I
+	public fun <init> (Lit/hypernext/modacenter/fidelity/data/BookDatabase;Lit/hypernext/modacenter/fidelity/api/InsultCensorClient;Lit/hypernext/modacenter/fidelity/api/PushNotificationClient;)V
+	public final fun getBooks ()Landroidx/compose/runtime/State;
+	public final fun getSortedByFavorite ()Lkotlinx/coroutines/flow/StateFlow;
+	public final fun sendData (Ljava/lang/String;)V
+	public final fun toggleSortByFavorite ()V
+}
+
+public final class it/hypernext/modacenter/fidelity/presentation/screen/login/ComposableSingletons$LoginScreenKt {
+	public static final field INSTANCE Lit/hypernext/modacenter/fidelity/presentation/screen/login/ComposableSingletons$LoginScreenKt;
+	public static field lambda-1 Lkotlin/jvm/functions/Function3;
+	public static field lambda-2 Lkotlin/jvm/functions/Function3;
+	public fun <init> ()V
+	public final fun getLambda-1$composeApp_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-2$composeApp_release ()Lkotlin/jvm/functions/Function3;
+}
+
+public final class it/hypernext/modacenter/fidelity/presentation/screen/login/LoginScreenKt {
+	public static final fun LoginScreen (Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;I)V
+}
+
+public final class it/hypernext/modacenter/fidelity/presentation/screen/login/LoginViewModel : androidx/lifecycle/ViewModel {
+	public static final field $stable I
+	public static final field Companion Lit/hypernext/modacenter/fidelity/presentation/screen/login/LoginViewModel$Companion;
+	public static final field PROVIDER_EMAIL Ljava/lang/String;
+	public static final field PROVIDER_PHONE Ljava/lang/String;
+	public fun <init> (Lit/hypernext/modacenter/fidelity/data/BookDatabase;)V
+	public final fun getAppSettings ()Landroidx/compose/runtime/MutableState;
+	public final fun getErrorSignin ()Landroidx/compose/runtime/MutableState;
+	public final fun getLoadComplete ()Landroidx/compose/runtime/MutableState;
+	public final fun getLoginSucced ()Landroidx/compose/runtime/MutableState;
+	public final fun getOnFirebaseResult ()Lkotlin/jvm/functions/Function1;
+	public final fun inserUser (Lkotlin/jvm/functions/Function0;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun setAppSettings (Landroidx/compose/runtime/MutableState;)V
+	public final fun setErrorSignin (Landroidx/compose/runtime/MutableState;)V
+	public final fun setLoadComplete (Landroidx/compose/runtime/MutableState;)V
+	public final fun setLoginSucced (Landroidx/compose/runtime/MutableState;)V
+}
+
+public final class it/hypernext/modacenter/fidelity/presentation/screen/login/LoginViewModel$Companion {
+}
+
+public final class it/hypernext/modacenter/fidelity/presentation/screen/manage/ComposableSingletons$ManageScreenKt {
+	public static final field INSTANCE Lit/hypernext/modacenter/fidelity/presentation/screen/manage/ComposableSingletons$ManageScreenKt;
+	public static field lambda-1 Lkotlin/jvm/functions/Function2;
+	public static field lambda-2 Lkotlin/jvm/functions/Function2;
+	public static field lambda-3 Lkotlin/jvm/functions/Function2;
+	public static field lambda-4 Lkotlin/jvm/functions/Function2;
+	public static field lambda-5 Lkotlin/jvm/functions/Function2;
+	public static field lambda-6 Lkotlin/jvm/functions/Function2;
+	public static field lambda-7 Lkotlin/jvm/functions/Function2;
+	public fun <init> ()V
+	public final fun getLambda-1$composeApp_release ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda-2$composeApp_release ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda-3$composeApp_release ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda-4$composeApp_release ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda-5$composeApp_release ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda-6$composeApp_release ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda-7$composeApp_release ()Lkotlin/jvm/functions/Function2;
+}
+
+public final class it/hypernext/modacenter/fidelity/presentation/screen/manage/ManageScreenKt {
+	public static final fun ManageScreen (ILkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;I)V
+}
+
+public final class it/hypernext/modacenter/fidelity/presentation/screen/manage/ManageViewModel : androidx/lifecycle/ViewModel {
+	public static final field $stable I
+	public fun <init> (Lit/hypernext/modacenter/fidelity/data/BookDatabase;Landroidx/lifecycle/SavedStateHandle;)V
+	public final fun getAuthorField ()Landroidx/compose/runtime/MutableState;
+	public final fun getCategoryField ()Landroidx/compose/runtime/MutableState;
+	public final fun getImageField ()Landroidx/compose/runtime/MutableState;
+	public final fun getSummaryField ()Landroidx/compose/runtime/MutableState;
+	public final fun getTagsField ()Landroidx/compose/runtime/MutableState;
+	public final fun getTitleField ()Landroidx/compose/runtime/MutableState;
+	public final fun insertBook (Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;)V
+	public final fun setAuthorField (Landroidx/compose/runtime/MutableState;)V
+	public final fun setCategoryField (Landroidx/compose/runtime/MutableState;)V
+	public final fun setImageField (Landroidx/compose/runtime/MutableState;)V
+	public final fun setSummaryField (Landroidx/compose/runtime/MutableState;)V
+	public final fun setTagsField (Landroidx/compose/runtime/MutableState;)V
+	public final fun setTitleField (Landroidx/compose/runtime/MutableState;)V
+	public final fun updateBook (Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;)V
+}
+
+public final class it/hypernext/modacenter/fidelity/presentation/screen/manage/ManageViewModelKt {
+	public static final field IMAGE_URL Ljava/lang/String;
+}
+
+public abstract class it/hypernext/modacenter/fidelity/util/RequestState {
+	public static final field $stable I
+	public final fun getErrorMessage ()Ljava/lang/String;
+	public final fun getSuccessData ()Ljava/lang/Object;
+	public final fun isError ()Z
+	public final fun isLoading ()Z
+	public final fun isSuccess ()Z
+}
+
+public final class it/hypernext/modacenter/fidelity/util/RequestState$Error : it/hypernext/modacenter/fidelity/util/RequestState {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lit/hypernext/modacenter/fidelity/util/RequestState$Error;
+	public static synthetic fun copy$default (Lit/hypernext/modacenter/fidelity/util/RequestState$Error;Ljava/lang/String;ILjava/lang/Object;)Lit/hypernext/modacenter/fidelity/util/RequestState$Error;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getMessage ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class it/hypernext/modacenter/fidelity/util/RequestState$Idle : it/hypernext/modacenter/fidelity/util/RequestState {
+	public static final field $stable I
+	public static final field INSTANCE Lit/hypernext/modacenter/fidelity/util/RequestState$Idle;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class it/hypernext/modacenter/fidelity/util/RequestState$Loading : it/hypernext/modacenter/fidelity/util/RequestState {
+	public static final field $stable I
+	public static final field INSTANCE Lit/hypernext/modacenter/fidelity/util/RequestState$Loading;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class it/hypernext/modacenter/fidelity/util/RequestState$Success : it/hypernext/modacenter/fidelity/util/RequestState {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/Object;)V
+	public final fun component1 ()Ljava/lang/Object;
+	public final fun copy (Ljava/lang/Object;)Lit/hypernext/modacenter/fidelity/util/RequestState$Success;
+	public static synthetic fun copy$default (Lit/hypernext/modacenter/fidelity/util/RequestState$Success;Ljava/lang/Object;ILjava/lang/Object;)Lit/hypernext/modacenter/fidelity/util/RequestState$Success;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getData ()Ljava/lang/Object;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class it/hypernext/modacenter/fidelity/util/RequestStateKt {
+	public static final fun DisplayResult-AAXhOkM (Lit/hypernext/modacenter/fidelity/util/RequestState;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function3;Landroidx/compose/animation/ContentTransform;Landroidx/compose/ui/graphics/Color;Landroidx/compose/runtime/Composer;II)V
 }
 
