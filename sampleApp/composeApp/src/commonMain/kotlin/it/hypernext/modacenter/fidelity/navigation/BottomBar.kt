@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.outlined.AccountBox
-import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -28,7 +27,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
 import it.hypernext.modacenter.fidelity.Res
-import it.hypernext.modacenter.fidelity.ic_google
+import it.hypernext.modacenter.fidelity.baseline_card_membership_24
+import it.hypernext.modacenter.fidelity.baseline_card_membership_24_trasp
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
@@ -57,24 +57,24 @@ fun BottomBar(navController: NavHostController) {
         var selected = currentDestination?.hierarchy?.any { it.route == route } == true
         NavigationBarItem(
             selected = selected,
-            onClick = { navController.navigate(route) },
-
+            onClick = {
+                navController.navigate(route)
+            },
             icon = {
-                val icon = if (selected) {
+                if (selected) {
                     Image(
 
                         modifier = Modifier.size(value.dp),
-                        painter = painterResource(it.hypernext.modacenter.fidelity.Res.drawable.ic_google),
+                        painter = painterResource(Res.drawable.baseline_card_membership_24),
                         contentDescription = "appleIcon"
                     )
                 } else {
                     Image(
                         modifier = Modifier.size(value.dp),
-                        painter = painterResource(it.hypernext.modacenter.fidelity.Res.drawable.ic_google),
+                        painter = painterResource(Res.drawable.baseline_card_membership_24_trasp),
                         contentDescription = "appleIcon"
                     )
                 }
-                icon
             },
             label = {
                 Text(
