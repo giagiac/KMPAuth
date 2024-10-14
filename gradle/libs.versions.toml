@@ -31,6 +31,7 @@ firebase-messaging = "24.0.2"
 ###[versions]
 navigation = "2.7.0-alpha07"
 landscapist = "2.4.0"
+qrKit = "1.0.8"
 room = "2.7.0-alpha09"
 ksp = "2.0.20-1.0.25"
 sqlite = "2.5.0-alpha09"
@@ -82,6 +83,7 @@ androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle
 
 compose-navigation = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigation" }
 landscapist-coil3 = { module = "com.github.skydoves:landscapist-coil3", version.ref = "landscapist" }
+qr-kit = { module = "network.chaintech:qr-kit", version.ref = "qrKit" }
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }

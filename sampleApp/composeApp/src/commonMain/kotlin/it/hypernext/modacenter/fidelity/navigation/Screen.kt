@@ -6,6 +6,8 @@ sealed class Screen(val route: String) {
     data object Login : Screen(route = "login_screen")
     data object Home : Screen(route = "home_screen")
     data object Card : Screen(route = "card_screen")
+    data object Account : Screen(route = "account_screen")
+    data object Offer : Screen(route = "offer_screen")
     data object Details : Screen(route = "details_screen/{$BOOK_ID_ARG}") {
         fun passId(id: Int) = "details_screen/$id"
     }

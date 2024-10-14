@@ -83,6 +83,9 @@ kotlin {
             implementation(libs.ktor.serialization.kotlinx.json)
 
             implementation(libs.bundles.ktor)
+
+            // qrcode
+            implementation(libs.qr.kit)
         }
     }
 }

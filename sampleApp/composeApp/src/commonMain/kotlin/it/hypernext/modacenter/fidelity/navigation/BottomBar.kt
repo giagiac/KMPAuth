@@ -56,14 +56,16 @@ fun BottomBar(navController: NavHostController) {
             )
         )
         NavigationBarItem(
-            selected = currentDestination?.hierarchy?.any { it.route ==  Screen.Card.route } == true,
+            selected = currentDestination?.hierarchy?.any { it.route == Screen.Card.route } == true,
             onClick = {
-                navController.navigate( Screen.Card.route)
+                if (currentDestination?.route.equals(Screen.Card.route)) return@NavigationBarItem // non esegue il click
+                navController.navigate(Screen.Card.route)
             },
             icon = {
-                val selected = currentDestination?.hierarchy?.any { it.route ==  Screen.Card.route } == true
+                val selected =
+                    currentDestination?.hierarchy?.any { it.route == Screen.Card.route } == true
                 Icon(
-                    modifier = Modifier.size(value.dp).alpha(if(selected) 1f else 0.38f),
+                    modifier = Modifier.size(value.dp).alpha(if (selected) 1f else 0.38f),
                     painter = painterResource(Res.drawable.baseline_card_membership_24),
                     contentDescription = "card"
                 )
@@ -74,12 +76,16 @@ fun BottomBar(navController: NavHostController) {
                 )
             })
         NavigationBarItem(
-            selected = currentDestination?.hierarchy?.any { it.route == Screen.Details.route } == true,
-            onClick = { navController.navigate(Screen.Details.route) },
+            selected = currentDestination?.hierarchy?.any { it.route == Screen.Account.route } == true,
+            onClick = {
+                if (currentDestination?.route.equals(Screen.Account.route)) return@NavigationBarItem // non esegue il click
+                navController.navigate(Screen.Account.route)
+            },
             icon = {
-                val selected = currentDestination?.hierarchy?.any { it.route ==  Screen.Details.route } == true
+                val selected =
+                    currentDestination?.hierarchy?.any { it.route == Screen.Account.route } == true
                 Icon(
-                    modifier = Modifier.size(25.dp).alpha(if(selected) 1f else 0.38f),
+                    modifier = Modifier.size(25.dp).alpha(if (selected) 1f else 0.38f),
                     painter = painterResource(Res.drawable.baseline_account_box_24),
                     contentDescription = "account"
                 )
@@ -90,12 +96,16 @@ fun BottomBar(navController: NavHostController) {
                 )
             })
         NavigationBarItem(
-            selected = currentDestination?.hierarchy?.any { it.route == Screen.Details.route } == true,
-            onClick = { navController.navigate(Screen.Details.route) },
+            selected = currentDestination?.hierarchy?.any { it.route == Screen.Offer.route } == true,
+            onClick = {
+                if (currentDestination?.route.equals(Screen.Offer.route)) return@NavigationBarItem // non esegue il click
+                navController.navigate(Screen.Offer.route)
+            },
             icon = {
-                val selected = currentDestination?.hierarchy?.any { it.route ==  Screen.Details.route } == true
+                val selected =
+                    currentDestination?.hierarchy?.any { it.route == Screen.Offer.route } == true
                 Icon(
-                    modifier = Modifier.size(25.dp).alpha(if(selected) 1f else 0.38f),
+                    modifier = Modifier.size(25.dp).alpha(if (selected) 1f else 0.38f),
                     painter = painterResource(Res.drawable.baseline_favorite_24),
                     contentDescription = "offer"
                 )
