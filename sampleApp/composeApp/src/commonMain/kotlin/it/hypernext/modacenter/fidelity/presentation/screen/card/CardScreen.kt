@@ -1,15 +1,9 @@
-package it.hypernext.modacenter.fidelity.presentation.screen.home
+package it.hypernext.modacenter.fidelity.presentation.screen.card
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
@@ -25,24 +19,16 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.mmk.kmpnotifier.notification.NotifierManager
 import it.hypernext.modacenter.fidelity.api.util.NetworkEError
-import it.hypernext.modacenter.fidelity.presentation.components.ErrorView
-import it.hypernext.modacenter.fidelity.presentation.components.LoadingView
-import it.hypernext.modacenter.fidelity.presentation.screen.card.CardViewModel
-import it.hypernext.modacenter.fidelity.presentation.screen.component.BookView
-import it.hypernext.modacenter.fidelity.util.DisplayResult
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.compose.viewmodel.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(
-    onBookSelect: (Int) -> Unit,
-    onCreateClick: () -> Unit,
+fun CardScreen(
     bottomBar: @Composable () -> Unit,
 ) {
     val scope = rememberCoroutineScope()
@@ -109,14 +95,6 @@ fun HomeScreen(
                 }
             )
         },
-        floatingActionButton = {
-            FloatingActionButton(onClick = onCreateClick) {
-                Icon(
-                    imageVector = Icons.Default.Add,
-                    contentDescription = "Add Icon"
-                )
-            }
-        },
         bottomBar = bottomBar,
         content = {
             censoredText?.let {
@@ -128,36 +106,6 @@ fun HomeScreen(
                     color = Color.Red
                 )
             }
-
-            books.DisplayResult(
-                onLoading = { LoadingView() },
-                onError = { ErrorView(it) },
-                onSuccess = { data ->
-                    if (data.isNotEmpty()) {
-                        LazyColumn(
-                            modifier = Modifier
-                                .padding(all = 12.dp)
-                                .padding(
-                                    top = it.calculateTopPadding(),
-                                    bottom = it.calculateBottomPadding()
-                                ),
-                            verticalArrangement = Arrangement.spacedBy(12.dp)
-                        ) {
-                            items(
-                                items = data,
-                                key = { it._id }
-                            ) {
-                                BookView(
-                                    book = it,
-                                    onClick = { onBookSelect(it._id) }
-                                )
-                            }
-                        }
-                    } else {
-                        ErrorView()
-                    }
-                }
-            )
         }
     )
 }

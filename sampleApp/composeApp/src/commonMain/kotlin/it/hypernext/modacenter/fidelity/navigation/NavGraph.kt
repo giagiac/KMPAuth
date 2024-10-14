@@ -6,8 +6,8 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import it.hypernext.modacenter.fidelity.presentation.screen.card.CardScreen
 import it.hypernext.modacenter.fidelity.presentation.screen.details.DetailsScreen
-import it.hypernext.modacenter.fidelity.presentation.screen.home.HomeScreen
 import it.hypernext.modacenter.fidelity.presentation.screen.login.LoginScreen
 import it.hypernext.modacenter.fidelity.presentation.screen.manage.ManageScreen
 
@@ -29,19 +29,26 @@ fun SetupNavGraph(navController: NavHostController, startDestination: String) {
                 }
             )
         }
-        composable(route = Screen.Home.route) {
-            HomeScreen(
-                onBookSelect = {
-                    navController.navigate(Screen.Details.passId(it))
-                },
-                onCreateClick = {
-                    navController.navigate(Screen.Manage.passId())
-                },
+        composable(route = Screen.Card.route) {
+            CardScreen (
                 bottomBar = {
                     BottomBar(navController)
                 }
             )
         }
+//        composable(route = Screen.Home.route) {
+//            CardScreen(
+//                onBookSelect = {
+//                    navController.navigate(Screen.Details.passId(it))
+//                },
+//                onCreateClick = {
+//                    navController.navigate(Screen.Manage.passId())
+//                },
+//                bottomBar = {
+//                    BottomBar(navController)
+//                }
+//            )
+//        }
         composable(
             route = Screen.Manage.route,
             arguments = listOf(

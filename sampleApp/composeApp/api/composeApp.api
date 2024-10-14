@@ -5,7 +5,7 @@ public final class it/hypernext/modacenter/fidelity/AppInitializer {
 }
 
 public final class it/hypernext/modacenter/fidelity/AppKt {
-	public static final fun App (Landroidx/compose/runtime/Composer;I)V
+	public static final fun App (ZLandroidx/compose/runtime/Composer;II)V
 }
 
 public final class it/hypernext/modacenter/fidelity/ComposableSingletons$MainActivityKt {
@@ -16,6 +16,8 @@ public final class it/hypernext/modacenter/fidelity/ComposableSingletons$MainAct
 }
 
 public final class it/hypernext/modacenter/fidelity/Drawable0_commonMainKt {
+	public static final fun getBaseline_card_membership_24 (Lit/hypernext/modacenter/fidelity/Res$drawable;)Lorg/jetbrains/compose/resources/DrawableResource;
+	public static final fun getBaseline_card_membership_24_trasp (Lit/hypernext/modacenter/fidelity/Res$drawable;)Lorg/jetbrains/compose/resources/DrawableResource;
 	public static final fun getIc_apple_logo_black (Lit/hypernext/modacenter/fidelity/Res$drawable;)Lorg/jetbrains/compose/resources/DrawableResource;
 	public static final fun getIc_apple_logo_white (Lit/hypernext/modacenter/fidelity/Res$drawable;)Lorg/jetbrains/compose/resources/DrawableResource;
 	public static final fun getIc_google (Lit/hypernext/modacenter/fidelity/Res$drawable;)Lorg/jetbrains/compose/resources/DrawableResource;
@@ -405,11 +407,9 @@ public final class it/hypernext/modacenter/fidelity/navigation/ComposableSinglet
 	public static final field INSTANCE Lit/hypernext/modacenter/fidelity/navigation/ComposableSingletons$BottomBarKt;
 	public static field lambda-1 Lkotlin/jvm/functions/Function2;
 	public static field lambda-2 Lkotlin/jvm/functions/Function2;
-	public static field lambda-3 Lkotlin/jvm/functions/Function2;
 	public fun <init> ()V
 	public final fun getLambda-1$composeApp_release ()Lkotlin/jvm/functions/Function2;
 	public final fun getLambda-2$composeApp_release ()Lkotlin/jvm/functions/Function2;
-	public final fun getLambda-3$composeApp_release ()Lkotlin/jvm/functions/Function2;
 }
 
 public final class it/hypernext/modacenter/fidelity/navigation/NavGraphKt {
@@ -469,6 +469,10 @@ public final class it/hypernext/modacenter/fidelity/presentation/components/Load
 	public static final fun LoadingView (Landroidx/compose/runtime/Composer;I)V
 }
 
+public final class it/hypernext/modacenter/fidelity/presentation/components/TextViewKt {
+	public static final fun TextView (Ljava/lang/String;Lit/hypernext/modacenter/fidelity/domain/AppSettings;Landroidx/compose/runtime/Composer;I)V
+}
+
 public final class it/hypernext/modacenter/fidelity/presentation/screen/component/BookViewKt {
 	public static final fun BookView (Lit/hypernext/modacenter/fidelity/domain/Book;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;I)V
 }
@@ -505,19 +509,14 @@ public final class it/hypernext/modacenter/fidelity/presentation/screen/home/Com
 	public static field lambda-2 Lkotlin/jvm/functions/Function2;
 	public static field lambda-3 Lkotlin/jvm/functions/Function2;
 	public static field lambda-4 Lkotlin/jvm/functions/Function3;
-	public static field lambda-5 Lkotlin/jvm/functions/Function3;
-	public static field lambda-6 Lkotlin/jvm/functions/Function3;
 	public fun <init> ()V
 	public final fun getLambda-1$composeApp_release ()Lkotlin/jvm/functions/Function2;
 	public final fun getLambda-2$composeApp_release ()Lkotlin/jvm/functions/Function2;
 	public final fun getLambda-3$composeApp_release ()Lkotlin/jvm/functions/Function2;
 	public final fun getLambda-4$composeApp_release ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-5$composeApp_release ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-6$composeApp_release ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class it/hypernext/modacenter/fidelity/presentation/screen/home/HomeScreenKt {
-	public static final fun AuthUiHelperButtonsAndFirebaseAuth (Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
 	public static final fun HomeScreen (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;I)V
 }
 
@@ -608,6 +607,70 @@ public final class it/hypernext/modacenter/fidelity/presentation/screen/manage/M
 
 public final class it/hypernext/modacenter/fidelity/presentation/screen/manage/ManageViewModelKt {
 	public static final field IMAGE_URL Ljava/lang/String;
+}
+
+public final class it/hypernext/modacenter/fidelity/presentation/theme/ColorKt {
+	public static final fun getMd_theme_dark_background ()J
+	public static final fun getMd_theme_dark_error ()J
+	public static final fun getMd_theme_dark_errorContainer ()J
+	public static final fun getMd_theme_dark_inverseOnSurface ()J
+	public static final fun getMd_theme_dark_inversePrimary ()J
+	public static final fun getMd_theme_dark_inverseSurface ()J
+	public static final fun getMd_theme_dark_onBackground ()J
+	public static final fun getMd_theme_dark_onError ()J
+	public static final fun getMd_theme_dark_onErrorContainer ()J
+	public static final fun getMd_theme_dark_onPrimary ()J
+	public static final fun getMd_theme_dark_onPrimaryContainer ()J
+	public static final fun getMd_theme_dark_onSecondary ()J
+	public static final fun getMd_theme_dark_onSecondaryContainer ()J
+	public static final fun getMd_theme_dark_onSurface ()J
+	public static final fun getMd_theme_dark_onSurfaceVariant ()J
+	public static final fun getMd_theme_dark_onTertiary ()J
+	public static final fun getMd_theme_dark_onTertiaryContainer ()J
+	public static final fun getMd_theme_dark_outline ()J
+	public static final fun getMd_theme_dark_outlineVariant ()J
+	public static final fun getMd_theme_dark_primary ()J
+	public static final fun getMd_theme_dark_primaryContainer ()J
+	public static final fun getMd_theme_dark_scrim ()J
+	public static final fun getMd_theme_dark_secondary ()J
+	public static final fun getMd_theme_dark_secondaryContainer ()J
+	public static final fun getMd_theme_dark_shadow ()J
+	public static final fun getMd_theme_dark_surface ()J
+	public static final fun getMd_theme_dark_surfaceTint ()J
+	public static final fun getMd_theme_dark_surfaceVariant ()J
+	public static final fun getMd_theme_dark_tertiary ()J
+	public static final fun getMd_theme_dark_tertiaryContainer ()J
+	public static final fun getMd_theme_light_background ()J
+	public static final fun getMd_theme_light_error ()J
+	public static final fun getMd_theme_light_errorContainer ()J
+	public static final fun getMd_theme_light_inverseOnSurface ()J
+	public static final fun getMd_theme_light_inversePrimary ()J
+	public static final fun getMd_theme_light_inverseSurface ()J
+	public static final fun getMd_theme_light_onBackground ()J
+	public static final fun getMd_theme_light_onError ()J
+	public static final fun getMd_theme_light_onErrorContainer ()J
+	public static final fun getMd_theme_light_onPrimary ()J
+	public static final fun getMd_theme_light_onPrimaryContainer ()J
+	public static final fun getMd_theme_light_onSecondary ()J
+	public static final fun getMd_theme_light_onSecondaryContainer ()J
+	public static final fun getMd_theme_light_onSurface ()J
+	public static final fun getMd_theme_light_onSurfaceVariant ()J
+	public static final fun getMd_theme_light_onTertiary ()J
+	public static final fun getMd_theme_light_onTertiaryContainer ()J
+	public static final fun getMd_theme_light_outline ()J
+	public static final fun getMd_theme_light_outlineVariant ()J
+	public static final fun getMd_theme_light_primary ()J
+	public static final fun getMd_theme_light_primaryContainer ()J
+	public static final fun getMd_theme_light_scrim ()J
+	public static final fun getMd_theme_light_secondary ()J
+	public static final fun getMd_theme_light_secondaryContainer ()J
+	public static final fun getMd_theme_light_shadow ()J
+	public static final fun getMd_theme_light_surface ()J
+	public static final fun getMd_theme_light_surfaceTint ()J
+	public static final fun getMd_theme_light_surfaceVariant ()J
+	public static final fun getMd_theme_light_tertiary ()J
+	public static final fun getMd_theme_light_tertiaryContainer ()J
+	public static final fun getSeed ()J
 }
 
 public abstract class it/hypernext/modacenter/fidelity/util/RequestState {
