@@ -1,7 +1,6 @@
 package it.hypernext.modacenter.fidelity.presentation.screen.card
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -31,9 +30,12 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.mmk.kmpnotifier.notification.NotifierManager
+import it.hypernext.modacenter.fidelity.Res
 import it.hypernext.modacenter.fidelity.api.util.NetworkEError
+import it.hypernext.modacenter.fidelity.card
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import qrgenerator.QRCodeImage
 
@@ -82,73 +84,49 @@ fun CardScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(text = "Book Library") },
+                title = { Text(text = stringResource(Res.string.card)) },
                 actions = {
                     IconButton(
                         onClick = {
-                            if (books.isSuccess() && books.getSuccessData().size >= 2) {
-                                viewModel.toggleSortByFavorite()
-                                scope.launch {
-                                    delay(100)
-                                    listState.animateScrollToItem(0)
-                                }
-                            }
+                            // TODO: implement sorting
                         }
                     ) {
-                        Icon(
-                            modifier = Modifier.alpha(
-                                if (sortedByFavorite) 1f else 0.38f
-                            ),
-                            imageVector = Icons.Default.Star,
-                            contentDescription = "Sorting Icon",
-                        )
+
                     }
                 }
             )
         },
         bottomBar = bottomBar,
         content = {
+//            errorMessage?.let {
+//                Text(
+//                    text = it.name,
+//                    color = Color.Red
+//                )
+//            }
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(10.dp)
                     .padding(horizontal = 16.dp)
-                    .padding(top = 22.dp)
+                    .padding(top = 32.dp)
                     .verticalScroll(rememberScrollState())
             ) {
-                Row {
-                    censoredText?.let {
-                        Text(it)
-                    }
-                }
-                Row {
-                    errorMessage?.let {
-                        Text(
-                            text = it.name,
-                            color = Color.Red
-                        )
-                    }
-                }
-                Row {
-                    QRCodeImage(
-                        url = "https://www.google.com/",
-                        contentScale = ContentScale.Fit,
-                        contentDescription = "QR Code",
-                        modifier = Modifier
-                            .size(150.dp),
-                        onSuccess = { qrImage ->
+                QRCodeImage(
+                    url = "https://www.google.com/",
+                    contentScale = ContentScale.Fit,
+                    contentDescription = "QR Code",
+                    modifier = Modifier
+                        .size(150.dp).padding(top = 32.dp),
+                    onSuccess = { qrImage ->
 
-                        },
-                        onFailure = {
-                            scope.launch {
-                                // TODO: Handle failure
-                            }
+                    },
+                    onFailure = {
+                        scope.launch {
+                            // TODO: handle error
                         }
-                    )
-                }
-
-
+                    }
+                )
             }
         }
     )
