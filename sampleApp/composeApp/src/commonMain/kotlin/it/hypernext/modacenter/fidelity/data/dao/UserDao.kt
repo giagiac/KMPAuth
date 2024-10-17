@@ -7,6 +7,7 @@ import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
 import it.hypernext.modacenter.fidelity.domain.User
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface UserDao {
@@ -19,7 +20,7 @@ interface UserDao {
 
     @Transaction
     @Query("SELECT * FROM user WHERE _id = :userId")
-    suspend fun getUserById(userId: Int): User
+    fun getUserById(userId: Int): Flow<User>
 
     @Transaction
     @Query("DELETE FROM user WHERE _id = :userId")

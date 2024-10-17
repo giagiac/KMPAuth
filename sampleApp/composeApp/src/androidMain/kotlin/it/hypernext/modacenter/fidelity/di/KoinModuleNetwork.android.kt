@@ -6,6 +6,8 @@ import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.request.header
+import io.ktor.http.URLProtocol
+import io.ktor.http.path
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
@@ -18,7 +20,15 @@ actual val client: HttpClient = HttpClient(OkHttp) {
     }
     defaultRequest {
         header("Content-Type", "application/json")
-        url("https://pokeapi.co/api/v2/")
+        // url("https://pokeapi.co/api/v2/")
+        url {
+            protocol = URLProtocol.HTTPS
+            host = "pokeapi.co"
+            path("api/v2/")
+        }
+        // TODO:
+        val token = "TODO set Token"
+        header("Authorization", "Bearer $token")
     }
     install(ContentNegotiation) {
         json(Json {

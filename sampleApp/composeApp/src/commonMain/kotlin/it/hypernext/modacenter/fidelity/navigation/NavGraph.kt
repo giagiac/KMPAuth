@@ -11,6 +11,7 @@ import it.hypernext.modacenter.fidelity.presentation.screen.card.CardScreen
 import it.hypernext.modacenter.fidelity.presentation.screen.details.DetailsScreen
 import it.hypernext.modacenter.fidelity.presentation.screen.login.LoginScreen
 import it.hypernext.modacenter.fidelity.presentation.screen.manage.ManageScreen
+import it.hypernext.modacenter.fidelity.presentation.screen.offer.OfferScreen
 
 @Composable
 fun SetupNavGraph(navController: NavHostController, startDestination: String) {
@@ -22,8 +23,8 @@ fun SetupNavGraph(navController: NavHostController, startDestination: String) {
         composable(route = Screen.Login.route) {
             LoginScreen(
                 onLoginSuccess = {
-                    navController.navigate(Screen.Home.route) {
-                        popUpTo(Screen.Login.route) {
+                    navController.navigate(Screen.Card.route) {
+                        popUpTo(Screen.Login.route) { // toglie dalla storia il LOGIN
                             inclusive = true
                         }
                     }
@@ -45,10 +46,13 @@ fun SetupNavGraph(navController: NavHostController, startDestination: String) {
             )
         }
         composable(route = Screen.Offer.route) {
-            AccountScreen(
+            OfferScreen(
                 bottomBar = {
                     BottomBar(navController)
-                }
+                },
+                onOfferSelect = {
+                    navController.navigate(Screen.Details.passUrl(it))
+                },
             )
         }
 //        composable(route = Screen.Home.route) {
@@ -88,17 +92,18 @@ fun SetupNavGraph(navController: NavHostController, startDestination: String) {
             route = Screen.Details.route,
             arguments = listOf(
                 navArgument(
-                    name = BOOK_ID_ARG
+                    name = URL_ARG
                 ) {
-                    type = NavType.IntType
-                    defaultValue = 0
+                    type = NavType.StringType
+                    defaultValue = ""
                 }
             )
         ) {
-            val id = it.arguments?.getInt(BOOK_ID_ARG) ?: 0
+            val id = it.arguments?.getString(URL_ARG) ?: ""
             DetailsScreen(
+                id = id,
                 onEditClick = {
-                    navController.navigate(Screen.Manage.passId(id))
+                    navController.navigate(Screen.Details.passUrl(id))
                 },
                 onBackClick = { navController.navigateUp() }
             )

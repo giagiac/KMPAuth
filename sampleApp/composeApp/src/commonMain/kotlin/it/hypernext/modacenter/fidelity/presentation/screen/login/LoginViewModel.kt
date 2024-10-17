@@ -16,19 +16,10 @@ class LoginViewModel(
     private val database: BookDatabase
 ) : ViewModel() {
 
-    companion object {
-        const val PROVIDER_PHONE = "PHONE"
-        const val PROVIDER_EMAIL = "EMAIL"
-    }
-
     var appSettings: MutableState<AppSettings?> = mutableStateOf(null)
     var loadComplete: MutableState<Boolean> = mutableStateOf(false)
 
     var loginSucced: MutableState<Boolean> = mutableStateOf(false)
-
-    private var phoneNumber = mutableStateOf("")
-    private var email = mutableStateOf("")
-    private var provider = mutableStateOf("")
 
     var errorSignin: MutableState<String?> = mutableStateOf(null)
 
@@ -54,16 +45,9 @@ class LoginViewModel(
 
                 errorSignin.value = null
 
-                firebaseUser.email?.let { email ->
-                    inserUser({
-                        loginSucced.value = true
-                    }, null, email, PROVIDER_EMAIL)
-                }
-                firebaseUser.phoneNumber?.let { phone ->
-                    inserUser({
-                        loginSucced.value = true
-                    }, phone, null, PROVIDER_PHONE)
-                }
+                inserUser({
+                    loginSucced.value = true
+                }, firebaseUser = firebaseUser)
             }
         } else {
             // signedInUserName = ""
@@ -74,24 +58,29 @@ class LoginViewModel(
 
     fun inserUser(
         onSuccess: () -> Unit,
-        phoneNumber: String?,
-        email: String?,
-        provider: String
+        firebaseUser: FirebaseUser
     ) {
         viewModelScope.launch {
             val token = NotifierManager.getPushNotifier().getToken()
 
-            if (token != null) {
+            token?.let {
+                val user = User(
+                    providerId = firebaseUser.providerId,
+                    uid = firebaseUser.uid,
+                    displayName = firebaseUser.displayName,
+                    email = firebaseUser.email,
+                    phoneNumber = firebaseUser.phoneNumber,
+                    photoURL = firebaseUser.photoURL,
+                    isAnonymous = firebaseUser.isAnonymous,
+                    isEmailVerified = firebaseUser.isEmailVerified,
+                    idToken = it,
+                    privacy = true
+                )
+
                 try {
                     val _id = database.userDao()
                         .insertUser(
-                            user = User(
-                                phoneNumber = phoneNumber,
-                                email = email,
-                                idToken = token,
-                                privacy = true,
-                                provider = provider
-                            ),
+                            user = user,
                         )
                     database.appSettingsDao().insertAppSettings(
                         appSettings = AppSettings(

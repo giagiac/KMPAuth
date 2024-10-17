@@ -1,11 +1,15 @@
 package it.hypernext.modacenter.fidelity.presentation.screen.account
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Star
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -16,14 +20,19 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.mmk.kmpnotifier.notification.NotifierManager
-import it.hypernext.modacenter.fidelity.api.util.NetworkEError
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import it.hypernext.modacenter.fidelity.Res
+import it.hypernext.modacenter.fidelity.account
+import it.hypernext.modacenter.fidelity.presentation.components.ErrorView
+import it.hypernext.modacenter.fidelity.presentation.components.LoadingView
+import it.hypernext.modacenter.fidelity.presentation.screen.card.UserCard
+import it.hypernext.modacenter.fidelity.presentation.screen.card.UserDetailCard
+import it.hypernext.modacenter.fidelity.util.DisplayResult
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -51,61 +60,73 @@ fun AccountScreen(
         myPushNotificationToken = NotifierManager.getPushNotifier().getToken() ?: ""
     }
 
-    var censoredText by remember {
-        mutableStateOf<String?>(null)
-    }
-    var uncensoredText by remember {
-        mutableStateOf("")
-    }
-    var isLoading by remember {
-        mutableStateOf(false)
-    }
-    var errorMessage by remember {
-        mutableStateOf<NetworkEError?>(null)
-    }
-
-    val client = remember {
-        // InsultCensorClient(createHttpClient(OkHttp.create()))
-    }
-
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(text = "Book Library") },
+                title = {
+                    Text(
+                        text = stringResource(Res.string.account),
+                        style = MaterialTheme.typography.headlineLarge
+                    )
+                },
                 actions = {
-                    IconButton(
-                        onClick = {
-                            if (books.isSuccess() && books.getSuccessData().size >= 2) {
-                                viewModel.toggleSortByFavorite()
-                                scope.launch {
-                                    delay(100)
-                                    listState.animateScrollToItem(0)
-                                }
-                            }
-                        }
-                    ) {
-                        Icon(
-                            modifier = Modifier.alpha(
-                                if (sortedByFavorite) 1f else 0.38f
-                            ),
-                            imageVector = Icons.Default.Star,
-                            contentDescription = "Sorting Icon",
-                        )
-                    }
+//                    IconButton(
+//                        onClick = {
+//                            if (books.isSuccess() && books.getSuccessData().size >= 2) {
+//                                viewModel.toggleSortByFavorite()
+//                                scope.launch {
+//                                    delay(100)
+//                                    listState.animateScrollToItem(0)
+//                                }
+//                            }
+//                        }
+//                    ) {
+//                        Icon(
+//                            modifier = Modifier.alpha(
+//                                if (sortedByFavorite) 1f else 0.38f
+//                            ),
+//                            imageVector = Icons.Default.Star,
+//                            contentDescription = "Sorting Icon",
+//                        )
+//                    }
                 }
             )
         },
         bottomBar = bottomBar,
         content = {
-            censoredText?.let {
-                Text(it)
+            Column(
+                modifier = Modifier
+                    .padding(it)
+                    .padding(start = 8.dp, end = 8.dp)
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState()),
+                verticalArrangement = Arrangement.spacedBy(4.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                viewModel.user.value?.let { user ->
+                    Row {
+                        UserCard(user = user)
+                    }
+                }
+                viewModel.userDetail.value.let { userDetail ->
+                    userDetail.DisplayResult(
+                        onLoading = { LoadingView() },
+                        onError = { ErrorView(it) },
+                        onSuccess = { data ->
+                            if (data.listScores.isNotEmpty()) {
+                                Row {
+                                    UserDetailCard(userDetail = data)
+                                }
+                            }
+                        })
+                }
             }
-            errorMessage?.let {
-                Text(
-                    text = it.name,
-                    color = Color.Red
-                )
-            }
+//            errorMessage?.let {
+//                Text(
+//                    text = it.name,
+//                    color = Color.Red
+//                )
+//            }
         }
     )
 }

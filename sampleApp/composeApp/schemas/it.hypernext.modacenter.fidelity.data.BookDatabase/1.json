@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "09319999441155ba26aef013732a31bf",
+    "identityHash": "df7fdd1e7e7164096e574c975d979621",
     "entities": [
       {
         "tableName": "book",
@@ -66,23 +66,12 @@
       },
       {
         "tableName": "user",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `email` TEXT, `provider` TEXT NOT NULL, `idToken` TEXT NOT NULL, `phoneNumber` TEXT, `privacy` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `idToken` TEXT NOT NULL, `privacy` INTEGER NOT NULL, `uid` TEXT NOT NULL, `displayName` TEXT, `email` TEXT, `phoneNumber` TEXT, `photoURL` TEXT, `isAnonymous` INTEGER NOT NULL, `isEmailVerified` INTEGER NOT NULL, `providerId` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "_id",
             "columnName": "_id",
             "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "email",
-            "columnName": "email",
-            "affinity": "TEXT"
-          },
-          {
-            "fieldPath": "provider",
-            "columnName": "provider",
-            "affinity": "TEXT",
             "notNull": true
           },
           {
@@ -92,14 +81,53 @@
             "notNull": true
           },
           {
+            "fieldPath": "privacy",
+            "columnName": "privacy",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "uid",
+            "columnName": "uid",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "displayName",
+            "columnName": "displayName",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "email",
+            "columnName": "email",
+            "affinity": "TEXT"
+          },
+          {
             "fieldPath": "phoneNumber",
             "columnName": "phoneNumber",
             "affinity": "TEXT"
           },
           {
-            "fieldPath": "privacy",
-            "columnName": "privacy",
+            "fieldPath": "photoURL",
+            "columnName": "photoURL",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "isAnonymous",
+            "columnName": "isAnonymous",
             "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isEmailVerified",
+            "columnName": "isEmailVerified",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "providerId",
+            "columnName": "providerId",
+            "affinity": "TEXT",
             "notNull": true
           }
         ],
@@ -143,7 +171,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '09319999441155ba26aef013732a31bf')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'df7fdd1e7e7164096e574c975d979621')"
     ]
   }
 }

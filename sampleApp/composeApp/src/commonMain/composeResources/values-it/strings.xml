@@ -1,6 +1,15 @@
 <resources>
+    <string name="url_endpoint">https://app.erroridiconiazione.com</string>
     <string name="app_name">KMPAuth</string>
     <string name="card">Carta Fedeltà</string>
     <string name="account">Utente</string>
     <string name="offers">Offerte</string>
+    <string name="name">Nome</string>
+    <string name="phone_number">Cellulare</string>
+    <string name="email">Email</string>
+    <string name="score">Punteggio</string>
+    <string name="count_offer">Numero offerte</string>
+    <string name="surname">Cognome</string>
+    <string name="date_of_birth">Data di nascita</string>
+    <string name="detail">Detail</string>
 </resources>

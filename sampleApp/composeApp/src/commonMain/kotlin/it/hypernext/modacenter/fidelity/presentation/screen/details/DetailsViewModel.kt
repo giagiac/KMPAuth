@@ -1,53 +1,60 @@
 package it.hypernext.modacenter.fidelity.presentation.screen.details
 
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.mmk.kmpnotifier.notification.NotifierManager
+import it.hypernext.modacenter.fidelity.api.ApiDataClient
+import it.hypernext.modacenter.fidelity.api.datamodel.Offers
+import it.hypernext.modacenter.fidelity.api.util.onError
+import it.hypernext.modacenter.fidelity.api.util.onSuccess
 import it.hypernext.modacenter.fidelity.data.BookDatabase
-import it.hypernext.modacenter.fidelity.domain.Book
-import it.hypernext.modacenter.fidelity.navigation.BOOK_ID_ARG
+import it.hypernext.modacenter.fidelity.domain.User
+import it.hypernext.modacenter.fidelity.util.RequestState
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class DetailsViewModel(
     private val database: BookDatabase,
-    savedStateHandle: SavedStateHandle
+    private val apiDataClient: ApiDataClient
 ) : ViewModel() {
-    var selectedBook: MutableState<Book?> = mutableStateOf(null)
-        private set
-    var isFavorite = mutableStateOf(false)
-        private set
-    private val selectedBookId = savedStateHandle.get<Int>(BOOK_ID_ARG) ?: 0
+    private var _offers: MutableState<RequestState<Offers>> =
+        mutableStateOf(RequestState.Loading)
+    val offers: State<RequestState<Offers>> = _offers
+
+    private var _user: MutableState<User?> =
+        mutableStateOf(null)
+    val user: State<User?> = _user
+
+    // TODO : portare in UI
+    private var _error: MutableState<String?> = mutableStateOf(null)
+    val error: State<String?> = _error
 
     init {
         viewModelScope.launch {
-            database.bookDao()
-                .getBookByIdFlow(selectedBookId)
-                .collectLatest {
-                    selectedBook.value = it
-                    isFavorite.value = it?.isFavorite ?: false
+
+            NotifierManager.getPushNotifier().getToken()
+                ?.let { apiDataClient.sendData(it) }
+
+            database.appSettingsDao().getAppSettings().collect { appSettings ->
+                if (appSettings != null) {
+                    database.userDao()
+                        .getUserById(appSettings._idUser).collectLatest { user ->
+                            _user.value = user
+                            apiDataClient.getOffers(user.uid).onSuccess { offers ->
+                                _offers.value = RequestState.Success(
+                                    data = offers
+                                )
+                            }.onError { error ->
+                                RequestState.Error(message = error.toString())
+                            }
+                        }
+                } else {
+                    _error.value = "Nessun utente trovato"
                 }
-        }
-    }
-
-    fun setFavoriteBook() {
-        viewModelScope.launch {
-            if (selectedBook.value?._id != null) {
-                database.bookDao()
-                    .setFavoriteBook(
-                        bookId = selectedBook.value!!._id,
-                        isFavorite = !isFavorite.value
-                    )
             }
-        }
-    }
-
-    fun deleteBook() {
-        viewModelScope.launch {
-            database.bookDao()
-                .deleteBookById(selectedBookId)
         }
     }
 }
