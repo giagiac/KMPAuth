@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "df7fdd1e7e7164096e574c975d979621",
+    "identityHash": "e346f43726cfc03affe6f7a2fcfbbd08",
     "entities": [
       {
         "tableName": "book",
@@ -66,7 +66,7 @@
       },
       {
         "tableName": "user",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `idToken` TEXT NOT NULL, `privacy` INTEGER NOT NULL, `uid` TEXT NOT NULL, `displayName` TEXT, `email` TEXT, `phoneNumber` TEXT, `photoURL` TEXT, `isAnonymous` INTEGER NOT NULL, `isEmailVerified` INTEGER NOT NULL, `providerId` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `notifierToken` TEXT NOT NULL, `privacy` INTEGER NOT NULL, `uid` TEXT NOT NULL, `displayName` TEXT, `email` TEXT, `phoneNumber` TEXT, `photoURL` TEXT, `isAnonymous` INTEGER NOT NULL, `isEmailVerified` INTEGER NOT NULL, `providerId` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "_id",
@@ -75,8 +75,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "idToken",
-            "columnName": "idToken",
+            "fieldPath": "notifierToken",
+            "columnName": "notifierToken",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -171,7 +171,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'df7fdd1e7e7164096e574c975d979621')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e346f43726cfc03affe6f7a2fcfbbd08')"
     ]
   }
 }

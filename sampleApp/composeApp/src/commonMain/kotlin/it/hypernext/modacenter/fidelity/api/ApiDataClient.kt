@@ -33,7 +33,7 @@ class ApiDataClient(
         } catch (e: SerializationException) {
             return Result.Error(NetworkEError.SERIALIZATION)
         } catch (e: Exception) {
-            return Result.Error(NetworkEError.UNKNOWN)
+            return Result.Error(NetworkEError.NO_INTERNET)
         }
 
         return when (response.status.value) {
@@ -63,7 +63,7 @@ class ApiDataClient(
         } catch (e: SerializationException) {
             return Result.Error(NetworkEError.SERIALIZATION)
         } catch (e: Exception) {
-            return Result.Error(NetworkEError.UNKNOWN)
+            return Result.Error(NetworkEError.NO_INTERNET)
         }
 
         return when (response.status.value) {
@@ -91,6 +91,8 @@ class ApiDataClient(
             return Result.Error(NetworkEError.NO_INTERNET)
         } catch (e: SerializationException) {
             return Result.Error(NetworkEError.SERIALIZATION)
+        } catch (e: Exception) {
+            return Result.Error(NetworkEError.NO_INTERNET)
         }
 
         return when (response.status.value) {

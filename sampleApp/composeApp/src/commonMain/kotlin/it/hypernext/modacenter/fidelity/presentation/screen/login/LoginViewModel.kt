@@ -63,7 +63,8 @@ class LoginViewModel(
         viewModelScope.launch {
             val token = NotifierManager.getPushNotifier().getToken()
 
-            token?.let {
+            token?.let { notifierToken ->
+
                 val user = User(
                     providerId = firebaseUser.providerId,
                     uid = firebaseUser.uid,
@@ -73,9 +74,23 @@ class LoginViewModel(
                     photoURL = firebaseUser.photoURL,
                     isAnonymous = firebaseUser.isAnonymous,
                     isEmailVerified = firebaseUser.isEmailVerified,
-                    idToken = it,
+                    notifierToken = notifierToken,
                     privacy = true
                 )
+
+                if(firebaseUser.providerData.isNotEmpty()){
+                    for(providerData in firebaseUser.providerData){
+                        if(providerData.displayName != null){
+                            user.displayName = providerData.displayName
+                        }
+                        if(providerData.photoURL != null){
+                            user.photoURL = providerData.photoURL
+                        }
+                        if(providerData.phoneNumber != null){
+                            user.phoneNumber = providerData.phoneNumber
+                        }
+                    }
+                }
 
                 try {
                     val _id = database.userDao()

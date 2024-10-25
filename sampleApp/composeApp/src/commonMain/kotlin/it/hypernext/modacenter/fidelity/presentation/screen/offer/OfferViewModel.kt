@@ -56,7 +56,7 @@ class OfferViewModel(
                                     data = offers
                                 )
                             }.onError { error ->
-                                RequestState.Error(message = error.toString())
+                                _offers.value = RequestState.Error(message = error.toString())
                             }
                         }
                 } else {

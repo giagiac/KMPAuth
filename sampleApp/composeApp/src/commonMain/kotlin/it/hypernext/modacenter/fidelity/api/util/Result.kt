@@ -2,7 +2,7 @@ package it.hypernext.modacenter.fidelity.api.util
 
 sealed interface Result<out D, out E : EError> {
     data class Success<out D>(val data: D) : Result<D, Nothing>
-    data class Error<out E : it.hypernext.modacenter.fidelity.api.util.EError>(val error: E) :
+    data class Error<out E : EError>(val error: E) :
         Result<Nothing, E>
 }
 

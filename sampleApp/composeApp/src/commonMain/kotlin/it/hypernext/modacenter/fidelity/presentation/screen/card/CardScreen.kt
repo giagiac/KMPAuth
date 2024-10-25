@@ -1,5 +1,11 @@
 package it.hypernext.modacenter.fidelity.presentation.screen.card
 
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,8 +16,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -25,7 +31,11 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.drawscope.rotate
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -69,9 +79,14 @@ fun CardScreen(
         myPushNotificationToken = NotifierManager.getPushNotifier().getToken() ?: ""
     }
 
-    val client = remember {
-        // InsultCensorClient(createHttpClient(OkHttp.create()))
-    }
+    val infiniteTransition = rememberInfiniteTransition()
+    val rotationAnimation = infiniteTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 360f,
+        animationSpec = infiniteRepeatable(tween (1000, easing = LinearEasing))
+    )
+
+    val brush = Brush.horizontalGradient(listOf(Color.Red, Color.Blue))
 
     Scaffold(
         topBar = {
@@ -81,37 +96,29 @@ fun CardScreen(
                         text = stringResource(Res.string.card),
                         style = MaterialTheme.typography.headlineLarge
                     )
-                },
-                actions = {
-                    IconButton(
-                        onClick = {
-                            // TODO: implement sorting
-                        }
-                    ) {
-
-                    }
                 }
             )
         },
         bottomBar = bottomBar,
         content = { it ->
-//            Box(modifier = Modifier
-//                .padding(it)
-//                .padding(start = 8.dp, end = 8.dp)
-//
-//                .verticalScroll(rememberScrollState())
-//                .fillMaxSize(),
-//            ){
-//
-//            }
             Scaffold(
                 modifier = Modifier.padding(it).padding(start = 8.dp, end = 8.dp),
                 topBar = {
                     viewModel.user.value?.let {
-                        Row {
+                        Row(
+                            horizontalArrangement = Arrangement.Center,
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
                             Card(
-                                modifier = Modifier
-                                    .fillMaxWidth()
+                                elevation = CardDefaults.cardElevation(
+                                    defaultElevation = 12.dp
+                                ),
+                                border = BorderStroke(1.dp, Color.Black),
+                                modifier = Modifier.padding(12.dp).drawBehind {
+                                    rotate (rotationAnimation.value) {
+                                        drawCircle(brush, style = Stroke(50.dp.value) )
+                                    }
+                                }
                             ) {
                                 QRCodeImage(
                                     url = it.uid,
@@ -136,9 +143,7 @@ fun CardScreen(
                 content = {
                     userDetail.DisplayResult(
                         onLoading = { LoadingView() },
-                        onError = {
-                            ErrorView(it)
-                        },
+                        onError = { ErrorView(it) },
                         onSuccess = { data ->
                             if (data.listScores.isNotEmpty()) {
                                 Column(

@@ -7,14 +7,14 @@ import androidx.room.PrimaryKey
 data class User(
     @PrimaryKey(autoGenerate = true)
     val _id: Int = 0,
-    val idToken: String,
+    val notifierToken: String,
     val privacy: Boolean,
 
     val uid: String,
-    val displayName: String?,
+    var displayName: String?,
     val email: String?,
-    val phoneNumber: String?,
-    val photoURL: String?,
+    var phoneNumber: String?,
+    var photoURL: String?,
     val isAnonymous: Boolean,
     val isEmailVerified: Boolean,
     val providerId: String

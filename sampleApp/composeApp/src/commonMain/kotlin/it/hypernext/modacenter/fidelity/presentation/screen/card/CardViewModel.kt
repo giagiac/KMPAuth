@@ -63,7 +63,7 @@ class CardViewModel(
                                     data = userDetail
                                 )
                             }.onError { error ->
-                                RequestState.Error(message = error.toString())
+                                _userDetail.value = RequestState.Error(message = error.toString())
                             }
                         }
                 } else {
