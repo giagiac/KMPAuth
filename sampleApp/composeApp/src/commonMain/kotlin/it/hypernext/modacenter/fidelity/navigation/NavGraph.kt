@@ -42,6 +42,9 @@ fun SetupNavGraph(navController: NavHostController, startDestination: String) {
             AccountScreen(
                 bottomBar = {
                     BottomBar(navController)
+                },
+                onLogout = {
+                    navController.popBackStack(Screen.Login.route, true)
                 }
             )
         }

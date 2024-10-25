@@ -70,6 +70,14 @@ fun <T> RequestState<T>.DisplayResult(
                 is RequestState.Success -> {
                     onSuccess(state.getSuccessData())
                 }
+
+//                RequestState.Idle -> {
+//                    onError?.invoke(state.getErrorMessage())
+//                }
+//
+//                RequestState.Loading -> {
+//                    onError?.invoke(state.getErrorMessage())
+//                }
             }
         }
     }

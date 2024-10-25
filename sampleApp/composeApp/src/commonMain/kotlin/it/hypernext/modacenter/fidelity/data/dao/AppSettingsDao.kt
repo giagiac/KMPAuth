@@ -22,6 +22,6 @@ interface AppSettingsDao {
     fun getAppSettings(): Flow<AppSettings?>
 
     @Transaction
-    @Query("DELETE FROM appSettings WHERE _id = :appSettingsId")
-    suspend fun deleteAppSettingsById(appSettingsId: Int)
+    @Query("DELETE FROM appSettings where _id = ${AppSettings.ID}")
+    suspend fun deleteAppSettingsById()
 }

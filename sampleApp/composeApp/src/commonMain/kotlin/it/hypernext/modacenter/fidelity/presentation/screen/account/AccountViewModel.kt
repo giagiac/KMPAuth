@@ -6,6 +6,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mmk.kmpnotifier.notification.NotifierManager
+import dev.gitlive.firebase.Firebase
+import dev.gitlive.firebase.auth.auth
 import it.hypernext.modacenter.fidelity.api.ApiDataClient
 import it.hypernext.modacenter.fidelity.api.InsultCensorClient
 import it.hypernext.modacenter.fidelity.api.datamodel.UserDetail
@@ -95,6 +97,19 @@ class AccountViewModel(
     fun sendData(token: String) {
         viewModelScope.launch {
             apiDataClient.sendData(token)
+        }
+    }
+
+    fun logout() {
+        viewModelScope.launch {
+            database.appSettingsDao().getAppSettings().collect { appSettings ->
+                if (appSettings != null) {
+                    database.userDao().deleteUserById(appSettings._idUser)
+                    database.appSettingsDao().deleteAppSettingsById()
+                    Firebase.auth.signOut()
+                    // NotifierManager.getPushNotifier().deleteMyToken()
+                }
+            }
         }
     }
 }

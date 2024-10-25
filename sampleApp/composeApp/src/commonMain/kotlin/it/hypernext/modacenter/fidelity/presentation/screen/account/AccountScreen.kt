@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -39,6 +40,7 @@ import org.koin.compose.viewmodel.koinViewModel
 @Composable
 fun AccountScreen(
     bottomBar: @Composable () -> Unit,
+    onLogout: () -> Unit
 ) {
     val scope = rememberCoroutineScope()
     val listState = rememberLazyListState()
@@ -107,11 +109,17 @@ fun AccountScreen(
                     Row {
                         UserCard(user = user)
                     }
+                    Row {
+                        Button(onClick = {
+                            viewModel.logout()
+                            onLogout()
+                        }, content = { Text("Logout") })
+                    }
                 }
                 viewModel.userDetail.value.let { userDetail ->
                     userDetail.DisplayResult(
                         onLoading = { LoadingView() },
-                        onError = { ErrorView(it) },
+                        onError = { error -> ErrorView(error) },
                         onSuccess = { data ->
                             if (data.listScores.isNotEmpty()) {
                                 Row {

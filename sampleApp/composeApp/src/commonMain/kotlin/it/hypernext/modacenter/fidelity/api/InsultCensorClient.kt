@@ -25,6 +25,8 @@ class InsultCensorClient(
             return Result.Error(NetworkEError.NO_INTERNET)
         } catch (e: SerializationException) {
             return Result.Error(NetworkEError.SERIALIZATION)
+        } catch (e: Exception) {
+            return Result.Error(NetworkEError.UNKNOWN)
         }
 
         return when (response.status.value) {

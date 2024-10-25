@@ -136,7 +136,9 @@ fun CardScreen(
                 content = {
                     userDetail.DisplayResult(
                         onLoading = { LoadingView() },
-                        onError = { ErrorView(it) },
+                        onError = {
+                            ErrorView(it)
+                        },
                         onSuccess = { data ->
                             if (data.listScores.isNotEmpty()) {
                                 Column(
