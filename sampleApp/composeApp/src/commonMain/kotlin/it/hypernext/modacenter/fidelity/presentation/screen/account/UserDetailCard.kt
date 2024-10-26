@@ -1,4 +1,4 @@
-package it.hypernext.modacenter.fidelity.presentation.screen.card
+package it.hypernext.modacenter.fidelity.presentation.screen.account
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

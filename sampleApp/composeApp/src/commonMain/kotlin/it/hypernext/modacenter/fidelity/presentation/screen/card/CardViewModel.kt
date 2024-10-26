@@ -58,12 +58,15 @@ class CardViewModel(
                     database.userDao()
                         .getUserById(appSettings._idUser).collectLatest { user ->
                             _user.value = user
-                            apiDataClient.getUserDetail(user.uid).onSuccess { userDetail ->
-                                _userDetail.value = RequestState.Success(
-                                    data = userDetail
-                                )
-                            }.onError { error ->
-                                _userDetail.value = RequestState.Error(message = error.toString())
+                            user?.let {
+                                apiDataClient.getUserDetail(user.uid).onSuccess { userDetail ->
+                                    _userDetail.value = RequestState.Success(
+                                        data = userDetail
+                                    )
+                                }.onError { error ->
+                                    _userDetail.value =
+                                        RequestState.Error(message = error.toString())
+                                }
                             }
                         }
                 } else {

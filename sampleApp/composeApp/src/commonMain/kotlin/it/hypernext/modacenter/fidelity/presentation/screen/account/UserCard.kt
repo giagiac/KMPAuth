@@ -1,4 +1,4 @@
-package it.hypernext.modacenter.fidelity.presentation.screen.card
+package it.hypernext.modacenter.fidelity.presentation.screen.account
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -60,6 +60,7 @@ fun UserCard(user: User) {
                     style = MaterialTheme.typography.bodyMedium
                 )
             }
+            // Gestione icona
             if (!user.photoURL.isNullOrEmpty()) {
                 CoilImage(
                     modifier = Modifier

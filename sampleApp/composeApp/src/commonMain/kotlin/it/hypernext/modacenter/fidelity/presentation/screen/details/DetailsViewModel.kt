@@ -43,12 +43,14 @@ class DetailsViewModel(
                     database.userDao()
                         .getUserById(appSettings._idUser).collectLatest { user ->
                             _user.value = user
-                            apiDataClient.getOffers(user.uid).onSuccess { offers ->
-                                _offers.value = RequestState.Success(
-                                    data = offers
-                                )
-                            }.onError { error ->
-                                RequestState.Error(message = error.toString())
+                            user?.let {
+                                apiDataClient.getOffers(user.uid).onSuccess { offers ->
+                                    _offers.value = RequestState.Success(
+                                        data = offers
+                                    )
+                                }.onError { error ->
+                                    RequestState.Error(message = error.toString())
+                                }
                             }
                         }
                 } else {

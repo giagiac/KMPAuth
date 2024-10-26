@@ -20,7 +20,7 @@ interface UserDao {
 
     @Transaction
     @Query("SELECT * FROM user WHERE _id = :userId")
-    fun getUserById(userId: Int): Flow<User>
+    fun getUserById(userId: Int): Flow<User?>
 
     @Transaction
     @Query("DELETE FROM user WHERE _id = :userId")

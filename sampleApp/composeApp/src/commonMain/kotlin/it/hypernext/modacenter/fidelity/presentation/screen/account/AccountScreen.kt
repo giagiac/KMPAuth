@@ -23,8 +23,6 @@ import it.hypernext.modacenter.fidelity.Res
 import it.hypernext.modacenter.fidelity.account
 import it.hypernext.modacenter.fidelity.presentation.components.ErrorView
 import it.hypernext.modacenter.fidelity.presentation.components.LoadingView
-import it.hypernext.modacenter.fidelity.presentation.screen.card.UserCard
-import it.hypernext.modacenter.fidelity.presentation.screen.card.UserDetailCard
 import it.hypernext.modacenter.fidelity.util.DisplayResult
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
@@ -58,35 +56,44 @@ fun AccountScreen(
                 style = MaterialTheme.typography.headlineLarge
             )
         })
-    }, bottomBar = bottomBar, content = { it ->
-        Scaffold(
-            modifier = Modifier.padding(it).padding(start = 8.dp, end = 8.dp),
-            topBar = {
-                viewModel.user.value?.let { user ->
-                    Column {
-                        Row {
-                            UserCard(user = user)
-                        }
-                        Row(
-                            modifier = Modifier.align(alignment = Alignment.CenterHorizontally)
-                                .padding(top = 8.dp)
-                        ) {
-                            Button(onClick = {
-                                viewModel.logout()
-                                onLogout()
-                            }, content = { Text("Logout") })
+    }, bottomBar = bottomBar,
+        content = { it ->
+            Scaffold(
+                modifier = Modifier.padding(it).padding(start = 8.dp, end = 8.dp),
+                topBar = {
+                    viewModel.user.value?.let { user ->
+                        Column {
+                            Row {
+                                UserCard(user = user)
+                            }
+                            Row(
+                                modifier = Modifier.align(alignment = Alignment.CenterHorizontally)
+                                    .padding(top = 8.dp, bottom = 8.dp)
+                            ) {
+                                Button(onClick = {
+                                    viewModel.logout()
+                                    onLogout()
+                                }, content = { Text("Logout") })
+                            }
                         }
                     }
-                }
-            }, content = {
-                userDetail.DisplayResult(
-                    onLoading = { LoadingView() },
-                    onError = { ErrorView(it) },
-                    onSuccess = { data ->
+                }, content = {
+                    Column(
+                        modifier = Modifier
+                            .padding(
+                                top = it.calculateTopPadding(),
+                                bottom = it.calculateBottomPadding()
+                            )
+                    ) {
                         Row {
-                            UserDetailCard(userDetail = data)
+                            userDetail.DisplayResult(
+                                onLoading = { LoadingView() },
+                                onError = { ErrorView(it) },
+                                onSuccess = { data ->
+                                    UserDetailCard(userDetail = data)
+                                })
                         }
-                    })
-            })
-    })
+                    }
+                })
+        })
 }
