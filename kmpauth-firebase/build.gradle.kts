@@ -38,7 +38,7 @@ kotlin {
         commonMain.dependencies {
             implementation(compose.runtime)
             implementation(compose.foundation)
-            implementation(compose.material)
+            implementation(compose.material3)
             implementation(libs.koin.compose)
             api(libs.firebase.gitlive.auth)
             implementation(project(":kmpauth-google"))
@@ -68,7 +68,12 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
+    buildFeatures {
+        buildConfig = true
+    }
 }
+
 dependencies {
     implementation(libs.firebase.auth.ktx)
 }

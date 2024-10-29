@@ -5,9 +5,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Button
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
+import androidx.compose.material3.Button
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -81,7 +81,7 @@ public actual fun PhoneAuthContainer(
                         enabled = verificationCodeEnabled,
                         value = _verificationCode,
                         onValueChange = { _verificationCode = it },
-                        label = { Text("Inserisci il codice inviato a $phone") },
+                        label = { Text("Inserisci il codice di 6 cifre inviato a $phone") },
                         modifier = Modifier.weight(0.7f),
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     )

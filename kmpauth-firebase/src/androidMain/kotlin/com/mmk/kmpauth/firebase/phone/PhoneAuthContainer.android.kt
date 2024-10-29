@@ -2,16 +2,17 @@ package com.mmk.kmpauth.firebase.phone
 
 import android.os.Parcelable
 import android.util.Log
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Button
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -33,7 +34,7 @@ import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
 import com.mmk.kmpauth.core.KMPAuthInternalApi
 import com.mmk.kmpauth.core.getActivity
-import dev.gitlive.firebase.auth.FirebaseUser
+import com.mmk.kmpauth.firebase.BuildConfig
 import dev.gitlive.firebase.auth.auth
 import java.util.concurrent.TimeUnit
 
@@ -51,7 +52,12 @@ public actual fun PhoneAuthContainer(
 
     val focusManager = LocalFocusManager.current
 
-    var _verificationCode by remember { mutableStateOf("") }
+    var verificationCode = ""
+    if (BuildConfig.DEBUG) {
+        verificationCode = "123456"
+    }
+
+    var _verificationCode by remember { mutableStateOf(verificationCode) }
     var _verificationId by remember { mutableStateOf<String?>(null) }
     var resendToken by remember { mutableStateOf<Parcelable?>(null) }
     var errorSend by remember { mutableStateOf<String?>(null) }
@@ -112,20 +118,25 @@ public actual fun PhoneAuthContainer(
                 PhoneAuthProvider.verifyPhoneNumber(options)
             }
             if (_verificationId != null && errorSend == null) {
-                Row {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
                     OutlinedTextField(
                         value = _verificationCode,
                         onValueChange = { _verificationCode = it },
                         label = {
-                            Text("Inserisci il codice inviato a $phone")
+                            Text("Inserisci il codice di 6 cifre inviato a $phone")
                         },
                         modifier = Modifier.weight(0.7f),
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                         enabled = verificationCodeEnabled,
                         textStyle = TextStyle(fontSize = 24.sp)
                     )
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.width(8.dp)) // Spazio tra TextField e Button
                     Button(enabled = verificationCodeEnabled,
+                        shape = ButtonDefaults.shape,
                         modifier = Modifier.weight(0.3f),
                         onClick = {
                             verificationCodeEnabled = false

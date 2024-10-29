@@ -8,15 +8,15 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Button
-import androidx.compose.material.DropdownMenu
-import androidx.compose.material.DropdownMenuItem
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material3.Button
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -28,6 +28,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.mmk.kmpauth.firebase.BuildConfig
 
 public data class Country(val code: String, val flag: String, val name: String)
 
@@ -38,8 +39,17 @@ public fun PhoneNumbers(enabled: Boolean, getPhoneNumber: (phone: String) -> Uni
         Country("+1", "🇺🇸", "Stati Uniti"),
         // Aggiungi altri paesi qui...
     )
-    var selectedCountry by remember { mutableStateOf(countries[0]) }
-    var phoneNumber by remember { mutableStateOf("") }
+
+    var _phoneNumber = ""
+    var indexCountrySelected = 0
+    if (BuildConfig.DEBUG) {
+        _phoneNumber = "6505551234"
+        indexCountrySelected = 1 // Stati Uniti
+    }
+
+    var selectedCountry by remember { mutableStateOf(countries[indexCountrySelected]) }
+
+    var phoneNumber by remember { mutableStateOf(_phoneNumber) }
     var phoneNumberError by remember { mutableStateOf(false) }
     var expanded by remember { mutableStateOf(false) }
 
@@ -66,21 +76,15 @@ public fun PhoneNumbers(enabled: Boolean, getPhoneNumber: (phone: String) -> Uni
                     modifier = Modifier.fillMaxWidth(),
                     textStyle = TextStyle(fontSize = 18.sp)
                 )
-                DropdownMenu(
-                    expanded = expanded,
-                    onDismissRequest = { expanded = false }
-                ) {
+                DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
                     countries.forEach { country ->
-                        DropdownMenuItem(onClick = {
+                        DropdownMenuItem(text = {
+                            Text(text = "${country.flag} ${country.name} (${country.code})")
+                        }, onClick = {
                             selectedCountry = country
                             phoneNumber = "" // Resetta il numero di telefono quando si cambia paese
                             expanded = false
-                        }) {
-                            Text(
-                                "${country.flag} ${country.name} (${country.code})",
-                                //fontSize = 24.sp
-                            )
-                        }
+                        })
                     }
                 }
             }
@@ -110,8 +114,7 @@ public fun PhoneNumbers(enabled: Boolean, getPhoneNumber: (phone: String) -> Uni
                 textStyle = TextStyle(fontSize = 18.sp)
             )
             Spacer(modifier = Modifier.width(8.dp)) // Spazio tra TextField e Button
-            Button(
-                modifier = Modifier.weight(0.3f),
+            Button(modifier = Modifier.weight(0.3f),
                 enabled = enabled && isValidPhoneNumber(selectedCountry.code, phoneNumber),
                 onClick = {
                     getPhoneNumber(selectedCountry.code + phoneNumber)

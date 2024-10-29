@@ -118,6 +118,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     packaging {
         resources {
@@ -127,6 +128,10 @@ android {
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
+            isDebuggable = false
+        }
+        getByName("debug") {
+            isDebuggable = true
         }
     }
     compileOptions {
