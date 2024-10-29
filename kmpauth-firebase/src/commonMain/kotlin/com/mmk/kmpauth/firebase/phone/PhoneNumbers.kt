@@ -1,11 +1,11 @@
 package com.mmk.kmpauth.firebase.phone
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Button
@@ -64,7 +64,7 @@ public fun PhoneNumbers(enabled: Boolean, getPhoneNumber: (phone: String) -> Uni
                         }
                     },
                     modifier = Modifier.fillMaxWidth(),
-                    textStyle = TextStyle(fontSize = 24.sp)
+                    textStyle = TextStyle(fontSize = 18.sp)
                 )
                 DropdownMenu(
                     expanded = expanded,
@@ -78,17 +78,21 @@ public fun PhoneNumbers(enabled: Boolean, getPhoneNumber: (phone: String) -> Uni
                         }) {
                             Text(
                                 "${country.flag} ${country.name} (${country.code})",
-                                fontSize = 24.sp
+                                //fontSize = 24.sp
                             )
                         }
                     }
                 }
             }
-
-            Spacer(modifier = Modifier.width(16.dp))
-
+        }
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             // Campo di testo per il numero di telefono
             OutlinedTextField(
+                modifier = Modifier.weight(0.7f),
                 enabled = enabled,
                 value = phoneNumber,
                 onValueChange = { phone ->
@@ -102,17 +106,18 @@ public fun PhoneNumbers(enabled: Boolean, getPhoneNumber: (phone: String) -> Uni
                 label = { Text("Numero di telefono") },
                 isError = phoneNumberError,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                modifier = Modifier.weight(1f),
-                textStyle = TextStyle(fontSize = 24.sp)
+                // modifier = Modifier.weight(1f),
+                textStyle = TextStyle(fontSize = 18.sp)
             )
-        }
-        Spacer(modifier = Modifier.height(16.dp))
-        Button(
-            enabled = enabled && isValidPhoneNumber(selectedCountry.code, phoneNumber),
-            onClick = {
-                getPhoneNumber(selectedCountry.code + phoneNumber)
-            }) {
-            Text("Invia OTP")
+            Spacer(modifier = Modifier.width(8.dp)) // Spazio tra TextField e Button
+            Button(
+                modifier = Modifier.weight(0.3f),
+                enabled = enabled && isValidPhoneNumber(selectedCountry.code, phoneNumber),
+                onClick = {
+                    getPhoneNumber(selectedCountry.code + phoneNumber)
+                }) {
+                Text("Ricevi OTP")
+            }
         }
     }
 }

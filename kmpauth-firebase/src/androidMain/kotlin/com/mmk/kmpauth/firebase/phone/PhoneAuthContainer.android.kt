@@ -4,6 +4,7 @@ import android.os.Parcelable
 import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -20,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
@@ -31,20 +33,23 @@ import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
 import com.mmk.kmpauth.core.KMPAuthInternalApi
 import com.mmk.kmpauth.core.getActivity
+import dev.gitlive.firebase.auth.FirebaseUser
 import dev.gitlive.firebase.auth.auth
 import java.util.concurrent.TimeUnit
 
 @OptIn(KMPAuthInternalApi::class)
 @Composable
 public actual fun PhoneAuthContainer(
-    modifier: Modifier,
 //    codeSent: (triggerResend: (Unit)) -> Unit,
 //    getVerificationCode: (code: String) -> Unit,
-    onResult: (Result<dev.gitlive.firebase.auth.FirebaseUser?>) -> Unit
+    onResult: (Result<dev.gitlive.firebase.auth.FirebaseUser?>) -> Unit,
+    codeSent: (Unit) -> Unit,
 ) {
     val activity = LocalContext.current.getActivity()
 
     val auth = FirebaseAuth.getInstance()
+
+    val focusManager = LocalFocusManager.current
 
     var _verificationCode by remember { mutableStateOf("") }
     var _verificationId by remember { mutableStateOf<String?>(null) }
@@ -70,60 +75,59 @@ public actual fun PhoneAuthContainer(
 //        }
 //    }
 
-    Box(modifier = modifier) {
-        Column {
-            PhoneNumbers(enabled = phoneNumberEnabled, getPhoneNumber = { phone ->
-                phoneNumber = phone
-            })
-            Text(text = errorSend ?: "", color = Color.Red)
-            phoneNumber?.let { phone ->
-                phoneNumberEnabled = false
-                if (_verificationId == null && errorSend == null) {
-                    val options = PhoneAuthOptions.newBuilder(auth).setPhoneNumber(phone)
-                        .setTimeout(60L, TimeUnit.SECONDS)
-                        .setActivity(activity!!) // Make sure your MainActivity inherits ComponentActivity
-                        .setCallbacks(object :
-                            PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-                            override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-                                // Auto-retrieval or instant validation is handled here
-                                print(credential)
-                            }
+    Column {
+        PhoneNumbers(enabled = phoneNumberEnabled, getPhoneNumber = { phone ->
+            phoneNumber = phone
+        })
+        Text(text = errorSend ?: "", color = Color.Red)
+        phoneNumber?.let { phone ->
+            phoneNumberEnabled = false
+            if (_verificationId == null && errorSend == null) {
+                val options = PhoneAuthOptions.newBuilder(auth).setPhoneNumber(phone)
+                    .setTimeout(60L, TimeUnit.SECONDS)
+                    .setActivity(activity!!) // Make sure your MainActivity inherits ComponentActivity
+                    .setCallbacks(object :
+                        PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+                        override fun onVerificationCompleted(credential: PhoneAuthCredential) {
+                            // Auto-retrieval or instant validation is handled here
+                            print(credential)
+                        }
 
-                            override fun onVerificationFailed(e: FirebaseException) {
-                                Log.e("MainActivity", "Verification failed", e)
-                                errorSend = e.message
-                            }
+                        override fun onVerificationFailed(e: FirebaseException) {
+                            Log.e("MainActivity", "Verification failed", e)
+                            errorSend = e.message
+                        }
 
-                            override fun onCodeSent(
-                                verificationId: String,
-                                token: PhoneAuthProvider.ForceResendingToken
-                            ) {
-                                Log.d("MainActivity", "Code sent: $verificationId")
-                                resendToken = token
-                                _verificationId = verificationId
-                                verificationCodeEnabled = true
-                            }
-                        }).build()
-                    PhoneAuthProvider.verifyPhoneNumber(options)
-                }
-                if (_verificationId != null && errorSend == null) {
-                    Column(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        OutlinedTextField(
-                            value = _verificationCode,
-                            onValueChange = { _verificationCode = it },
-                            label = {
-                                Text("Inserisci il codice inviato a $phone")
-                            },
-                            modifier = Modifier.fillMaxWidth(),
-                            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                            enabled = verificationCodeEnabled,
-                            textStyle = TextStyle(fontSize = 24.sp)
-                        )
-                        Spacer(modifier = Modifier.height(16.dp))
-                        Button(enabled = verificationCodeEnabled, onClick = {
+                        override fun onCodeSent(
+                            verificationId: String,
+                            token: PhoneAuthProvider.ForceResendingToken
+                        ) {
+                            Log.d("MainActivity", "Code sent: $verificationId")
+                            resendToken = token
+                            _verificationId = verificationId
+                            verificationCodeEnabled = true
+                            focusManager.clearFocus()
+                        }
+                    }).build()
+                PhoneAuthProvider.verifyPhoneNumber(options)
+            }
+            if (_verificationId != null && errorSend == null) {
+                Row {
+                    OutlinedTextField(
+                        value = _verificationCode,
+                        onValueChange = { _verificationCode = it },
+                        label = {
+                            Text("Inserisci il codice inviato a $phone")
+                        },
+                        modifier = Modifier.weight(0.7f),
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                        enabled = verificationCodeEnabled,
+                        textStyle = TextStyle(fontSize = 24.sp)
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Button(enabled = verificationCodeEnabled,
+                        modifier = Modifier.weight(0.3f),
+                        onClick = {
                             verificationCodeEnabled = false
                             val credential =
                                 PhoneAuthProvider.getCredential(
@@ -145,9 +149,7 @@ public actual fun PhoneAuthContainer(
                             }
 
                         }) {
-                            Text(text = "Conferma")
-                        }
-                        Spacer(modifier = Modifier.height(16.dp))
+                        Text(text = "Conferma")
                     }
                 }
             }

@@ -72,11 +72,11 @@ fun LoginScreen(
 //                fontSize = 60.sp
 //            )
 //        }
-        Row{
-            Button(onClick = {focusManager.clearFocus()}){
-                Text(text = "Clear Focus")
-            }
-        }
+//        Row{
+//            Button(onClick = {focusManager.clearFocus()}){
+//                Text(text = "Clear Focus")
+//            }
+//        }
         Row {
             Text(
                 text = stringResource(Res.string.title_login),
@@ -84,7 +84,7 @@ fun LoginScreen(
                 fontStyle = FontStyle.Italic,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth().padding(bottom = 14.dp),
-                fontSize = 100.sp,
+                fontSize = 70.sp,
             )
         }
         viewModelAppSettings.errorSignin.let { error ->
@@ -119,8 +119,10 @@ fun LoginScreen(
         Row {
             // ************************** UiHelper Text Buttons *************
             PhoneAuthContainer(
-                modifier = Modifier.fillMaxWidth(),
-                onResult = viewModelAppSettings.onFirebaseResult
+                onResult = viewModelAppSettings.onFirebaseResult,
+                codeSent = {
+                    focusManager.clearFocus()
+                }
             )
         }
     }
