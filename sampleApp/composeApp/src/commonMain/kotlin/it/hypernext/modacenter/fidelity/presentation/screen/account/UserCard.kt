@@ -23,6 +23,7 @@ import it.hypernext.modacenter.fidelity.Res
 import it.hypernext.modacenter.fidelity.apple_logo
 import it.hypernext.modacenter.fidelity.domain.User
 import it.hypernext.modacenter.fidelity.email
+import it.hypernext.modacenter.fidelity.hello
 import it.hypernext.modacenter.fidelity.ic_google
 import it.hypernext.modacenter.fidelity.name
 import it.hypernext.modacenter.fidelity.phone_number
@@ -43,10 +44,9 @@ fun UserCard(user: User) {
         ) {
             user.displayName?.let {
                 Text(
-                    text = "${stringResource(Res.string.name)}: ${user.displayName}",
-                    style = MaterialTheme.typography.headlineLarge,
-
-                    )
+                    text = "🎉 ${stringResource(Res.string.hello)} $it 🎉",
+                    style = MaterialTheme.typography.headlineLarge
+                )
             }
             user.phoneNumber?.let {
                 Text(

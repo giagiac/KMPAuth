@@ -78,6 +78,7 @@ public final class com/mmk/kmpauth/firebase/phone/Country {
 
 public final class com/mmk/kmpauth/firebase/phone/PhoneAuthContainer_androidKt {
 	public static final fun PhoneAuthContainer (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;I)V
+	public static final fun isDebug ()Z
 }
 
 public final class com/mmk/kmpauth/firebase/phone/PhoneNumbersKt {

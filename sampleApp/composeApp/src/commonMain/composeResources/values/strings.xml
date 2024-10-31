@@ -6,6 +6,7 @@
     <string name="account">Account</string>
     <string name="offers">Offer</string>
     <string name="name">Name</string>
+    <string name="hello">Ciao</string>
     <string name="phone_number">Phone number</string>
     <string name="email">Email</string>
     <string name="score">Score</string>
