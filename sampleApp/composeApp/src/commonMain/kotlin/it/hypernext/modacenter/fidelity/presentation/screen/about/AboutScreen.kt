@@ -44,7 +44,7 @@ fun AboutScreen(
                         text = stringResource(Res.string.about),
                         style = MaterialTheme.typography.headlineLarge
                     )
-                }
+                },
             )
         },
         bottomBar = bottomBar,
@@ -52,6 +52,7 @@ fun AboutScreen(
             Scaffold(
                 topBar = {
                     Column(modifier = Modifier.padding(it).padding(start = 8.dp, end = 8.dp)) {
+
                         Text("Dove siamo", fontWeight = FontWeight.Bold, fontSize = 20.sp)
                         Spacer(modifier = Modifier.height(8.dp))
                         Text("Signoressa di Trevignano")
