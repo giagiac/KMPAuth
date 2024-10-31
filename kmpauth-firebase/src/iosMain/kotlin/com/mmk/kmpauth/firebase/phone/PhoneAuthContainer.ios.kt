@@ -28,6 +28,9 @@ import platform.Foundation.NSError
 //On iOS this is needed for some reason, app is recomposed again when navigate to OAuth Screen.
 // rememberUpdatedState doesn't solve the problem
 
+// iOS
+public actual val isDebug: Boolean = false
+
 @OptIn(ExperimentalForeignApi::class)
 @Composable
 public actual fun PhoneAuthContainer(

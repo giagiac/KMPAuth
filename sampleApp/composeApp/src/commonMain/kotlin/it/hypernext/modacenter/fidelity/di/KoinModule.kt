@@ -1,6 +1,7 @@
 package it.hypernext.modacenter.fidelity.di
 
 import it.hypernext.modacenter.fidelity.data.getRoomDatabase
+import it.hypernext.modacenter.fidelity.presentation.screen.about.AboutViewModel
 import it.hypernext.modacenter.fidelity.presentation.screen.account.AccountViewModel
 import it.hypernext.modacenter.fidelity.presentation.screen.card.CardViewModel
 import it.hypernext.modacenter.fidelity.presentation.screen.details.DetailsViewModel
@@ -19,6 +20,7 @@ val sharedModule = module {
     single { getRoomDatabase(get()) }
     viewModelOf(::LoginViewModel)
     viewModelOf(::CardViewModel)
+    viewModelOf(::AboutViewModel)
     viewModelOf(::AccountViewModel)
     viewModelOf(::OfferViewModel)
     viewModelOf(::ManageViewModel)

@@ -38,6 +38,8 @@ import com.mmk.kmpauth.firebase.BuildConfig
 import dev.gitlive.firebase.auth.auth
 import java.util.concurrent.TimeUnit
 
+public actual val isDebug: Boolean = BuildConfig.DEBUG
+
 @OptIn(KMPAuthInternalApi::class)
 @Composable
 public actual fun PhoneAuthContainer(
@@ -137,7 +139,7 @@ public actual fun PhoneAuthContainer(
                     Spacer(modifier = Modifier.width(8.dp)) // Spazio tra TextField e Button
                     Button(enabled = verificationCodeEnabled,
                         shape = ButtonDefaults.shape,
-                        modifier = Modifier.weight(0.3f),
+                        modifier = Modifier.weight(0.3f).align(Alignment.Bottom),
                         onClick = {
                             verificationCodeEnabled = false
                             val credential =

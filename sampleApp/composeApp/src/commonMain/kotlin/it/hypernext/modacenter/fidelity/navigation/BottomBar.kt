@@ -24,12 +24,14 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
 import it.hypernext.modacenter.fidelity.Res
+import it.hypernext.modacenter.fidelity.about
 import it.hypernext.modacenter.fidelity.account
 import it.hypernext.modacenter.fidelity.baseline_account_box_24
 import it.hypernext.modacenter.fidelity.baseline_card_membership_24
 import it.hypernext.modacenter.fidelity.baseline_favorite_24
 import it.hypernext.modacenter.fidelity.card
 import it.hypernext.modacenter.fidelity.offers
+import it.hypernext.modacenter.fidelity.sharp_info_24
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -115,5 +117,26 @@ fun BottomBar(navController: NavHostController) {
                     text = stringResource(Res.string.offers)
                 )
             })
+        NavigationBarItem(
+            selected = currentDestination?.hierarchy?.any { it.route == Screen.About.route } == true,
+            onClick = {
+                if (currentDestination?.route.equals(Screen.About.route)) return@NavigationBarItem // non esegue il click
+                navController.navigate(Screen.About.route)
+            },
+            icon = {
+                val selected =
+                    currentDestination?.hierarchy?.any { it.route == Screen.About.route } == true
+                Icon(
+                    modifier = Modifier.size(25.dp).alpha(if (selected) 1f else 0.38f),
+                    painter = painterResource(Res.drawable.sharp_info_24),
+                    contentDescription = "about"
+                )
+            },
+            label = {
+                Text(
+                    text = stringResource(Res.string.about)
+                )
+            }
+        )
     }
 }

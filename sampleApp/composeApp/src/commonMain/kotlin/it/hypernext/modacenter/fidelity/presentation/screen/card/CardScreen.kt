@@ -83,7 +83,7 @@ fun CardScreen(
     val rotationAnimation = infiniteTransition.animateFloat(
         initialValue = 0f,
         targetValue = 360f,
-        animationSpec = infiniteRepeatable(tween (1000, easing = LinearEasing))
+        animationSpec = infiniteRepeatable(tween(1000, easing = LinearEasing))
     )
 
     val brush = Brush.horizontalGradient(listOf(Color.Red, Color.Blue))
@@ -115,8 +115,8 @@ fun CardScreen(
                                 ),
                                 border = BorderStroke(1.dp, Color.Black),
                                 modifier = Modifier.padding(12.dp).drawBehind {
-                                    rotate (rotationAnimation.value) {
-                                        drawCircle(brush, style = Stroke(50.dp.value) )
+                                    rotate(rotationAnimation.value) {
+                                        drawCircle(brush, style = Stroke(50.dp.value))
                                     }
                                 }
                             ) {

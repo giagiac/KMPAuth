@@ -28,7 +28,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.mmk.kmpauth.firebase.BuildConfig
 
 public data class Country(val code: String, val flag: String, val name: String)
 
@@ -42,7 +41,7 @@ public fun PhoneNumbers(enabled: Boolean, getPhoneNumber: (phone: String) -> Uni
 
     var _phoneNumber = ""
     var indexCountrySelected = 0
-    if (BuildConfig.DEBUG) {
+    if (isDebug) {
         _phoneNumber = "6505551234"
         indexCountrySelected = 1 // Stati Uniti
     }
@@ -114,7 +113,7 @@ public fun PhoneNumbers(enabled: Boolean, getPhoneNumber: (phone: String) -> Uni
                 textStyle = TextStyle(fontSize = 18.sp)
             )
             Spacer(modifier = Modifier.width(8.dp)) // Spazio tra TextField e Button
-            Button(modifier = Modifier.weight(0.3f),
+            Button(modifier = Modifier.weight(0.3f).align(Alignment.Bottom),
                 enabled = enabled && isValidPhoneNumber(selectedCountry.code, phoneNumber),
                 onClick = {
                     getPhoneNumber(selectedCountry.code + phoneNumber)

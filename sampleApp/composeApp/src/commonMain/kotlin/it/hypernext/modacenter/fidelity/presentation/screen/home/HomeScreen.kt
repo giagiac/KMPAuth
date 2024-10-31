@@ -31,7 +31,7 @@ import com.mmk.kmpnotifier.notification.NotifierManager
 import it.hypernext.modacenter.fidelity.api.util.NetworkEError
 import it.hypernext.modacenter.fidelity.presentation.components.ErrorView
 import it.hypernext.modacenter.fidelity.presentation.components.LoadingView
-import it.hypernext.modacenter.fidelity.presentation.screen.card.CardViewModel
+import it.hypernext.modacenter.fidelity.presentation.screen.about.AboutViewModel
 import it.hypernext.modacenter.fidelity.presentation.screen.component.BookView
 import it.hypernext.modacenter.fidelity.util.DisplayResult
 import kotlinx.coroutines.delay
@@ -47,7 +47,7 @@ fun HomeScreen(
 ) {
     val scope = rememberCoroutineScope()
     val listState = rememberLazyListState()
-    val viewModel = koinViewModel<CardViewModel>()
+    val viewModel = koinViewModel<AboutViewModel>()
     val books by viewModel.books
     val sortedByFavorite by viewModel.sortedByFavorite.collectAsStateWithLifecycle()
 

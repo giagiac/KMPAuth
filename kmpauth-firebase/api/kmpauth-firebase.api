@@ -1,3 +1,10 @@
+public final class com/mmk/kmpauth/firebase/BuildConfig {
+	public static final field BUILD_TYPE Ljava/lang/String;
+	public static final field DEBUG Z
+	public static final field LIBRARY_PACKAGE_NAME Ljava/lang/String;
+	public fun <init> ()V
+}
+
 public final class com/mmk/kmpauth/firebase/apple/AppleButtonUiContainerKt {
 	public static final fun AppleButtonUiContainer (Landroidx/compose/ui/Modifier;Ljava/util/List;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
 }
@@ -70,7 +77,7 @@ public final class com/mmk/kmpauth/firebase/phone/Country {
 }
 
 public final class com/mmk/kmpauth/firebase/phone/PhoneAuthContainer_androidKt {
-	public static final fun PhoneAuthContainer (Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
+	public static final fun PhoneAuthContainer (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;I)V
 }
 
 public final class com/mmk/kmpauth/firebase/phone/PhoneNumbersKt {

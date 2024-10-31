@@ -6,6 +6,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import it.hypernext.modacenter.fidelity.presentation.screen.about.AboutScreen
 import it.hypernext.modacenter.fidelity.presentation.screen.account.AccountScreen
 import it.hypernext.modacenter.fidelity.presentation.screen.card.CardScreen
 import it.hypernext.modacenter.fidelity.presentation.screen.details.DetailsScreen
@@ -59,6 +60,13 @@ fun SetupNavGraph(navController: NavHostController, startDestination: String) {
                 onOfferSelect = {
                     navController.navigate(Screen.Details.passUrl(it))
                 },
+            )
+        }
+        composable(route = Screen.About.route) {
+            AboutScreen(
+                bottomBar = {
+                    BottomBar(navController)
+                }
             )
         }
 //        composable(route = Screen.Home.route) {
