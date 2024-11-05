@@ -1,8 +1,12 @@
 package it.hypernext.modacenter.fidelity.api
 
 import io.ktor.client.HttpClient
+import io.ktor.client.call.body
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.HttpTimeout
+import io.ktor.client.plugins.auth.Auth
+import io.ktor.client.plugins.auth.providers.BearerTokens
+import io.ktor.client.plugins.auth.providers.bearer
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.plugins.logging.DEFAULT
@@ -10,6 +14,8 @@ import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.request.header
+import io.ktor.client.request.post
+import io.ktor.client.request.setBody
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
@@ -17,7 +23,10 @@ import kotlinx.serialization.json.Json
 //In shared/androidMain
 @OptIn(ExperimentalSerializationApi::class)
 actual fun createHttpClient(): HttpClient = HttpClient(OkHttp) {
-    //Timeout plugin to set up timeout milliseconds for client
+    var accessToken:String = ""
+    var refreshToken:String = ""
+
+    //Timeout plugin for timeouts
     install(HttpTimeout) {
         socketTimeoutMillis = 60_000
         requestTimeoutMillis = 60_000
@@ -43,4 +52,61 @@ actual fun createHttpClient(): HttpClient = HttpClient(OkHttp) {
             explicitNulls = false
         })
     }
+    // Aggiungi l'autenticazione con token e refresh token
+    install(Auth)
+    {
+        bearer {
+            // Carica il token iniziale
+            loadTokens {
+                BearerTokens(
+                    accessToken = accessToken,
+                    refreshToken = refreshToken
+                )
+            }
+
+            // Definisci come aggiornare i token
+            refreshTokens {
+                // Esegui una richiesta al tuo endpoint di autenticazione
+                // usando il refresh token.
+                val response = client.post("your_auth_endpoint") {
+                    setBody(
+                        // Invia il refresh token nel body della richiesta
+                        RefreshRequest(refreshToken = refreshToken)
+                    )
+                }
+
+                // Estrai i nuovi token dalla risposta
+                val tokens = response.body<AuthResponse>()
+
+                // Aggiorna i token nella struttura Auth
+                accessToken = tokens.accessToken
+                refreshToken = tokens.refreshToken
+
+                // Restituisci i nuovi token a Ktor
+                BearerTokens(
+                    accessToken = tokens.accessToken,
+                    refreshToken = tokens.refreshToken
+                )
+            }
+
+            // Configura l'header di autorizzazione
+            sendWithoutRequest { request ->
+                !request.url.toString().contains("your_auth_endpoint")
+            }
+        }
+    }
 }
+
+// Data class per la richiesta di refresh token
+data class RefreshRequest(val refreshToken: String)
+
+// Data class per la risposta di autenticazione
+data class AuthResponse(val accessToken: String, val refreshToken: String)
+
+// Data class per la struttura Auth
+data class Auth(val providers: AuthProviders)
+
+data class AuthProviders(
+    var accessToken: String,
+    var refreshToken: String
+)
