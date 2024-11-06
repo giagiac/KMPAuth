@@ -1,6 +1,6 @@
 name: Building Debug app
 
-#on:
+on:
   push:
     branches:
       - '**'
