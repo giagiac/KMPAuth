@@ -1,11 +1,14 @@
 package it.hypernext.modacenter.fidelity.presentation.screen.about
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -49,10 +52,14 @@ fun AboutScreen(
         },
         bottomBar = bottomBar,
         content = {
-            Scaffold(
-                topBar = {
-                    Column(modifier = Modifier.padding(it).padding(start = 8.dp, end = 8.dp)) {
-
+            Column(
+                modifier = Modifier.verticalScroll(rememberScrollState()).padding(
+                    top = it.calculateTopPadding(),
+                    bottom = it.calculateBottomPadding(),
+                ).padding(8.dp)
+            ) {
+                Card(modifier = Modifier.fillMaxSize().padding(bottom = 8.dp)) {
+                    Column(modifier = Modifier.padding(8.dp)) {
                         Text("Dove siamo", fontWeight = FontWeight.Bold, fontSize = 20.sp)
                         Spacer(modifier = Modifier.height(8.dp))
                         Text("Signoressa di Trevignano")
@@ -75,20 +82,17 @@ fun AboutScreen(
                         Text("+39 0423 670330")
                         Text("info@puntoettore.it")
                     }
-                },
-                content = {
-                    Box(modifier = Modifier.padding(it)) {
-                        CoilImage(
-                            modifier = Modifier
-                                .fillMaxWidth(),
-                            imageModel = { "https://app.erroridiconiazione.com/public/map.png" },
-                            imageOptions = ImageOptions(
-                                contentScale = ContentScale.Fit,
-                                alignment = Alignment.Center,
-                            )
-                        )
-                    }
                 }
-            )
+
+                CoilImage(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    imageModel = { "https://app.erroridiconiazione.com/public/map.png" },
+                    imageOptions = ImageOptions(
+                        contentScale = ContentScale.Fit,
+                        alignment = Alignment.Center,
+                    )
+                )
+            }
         })
 }

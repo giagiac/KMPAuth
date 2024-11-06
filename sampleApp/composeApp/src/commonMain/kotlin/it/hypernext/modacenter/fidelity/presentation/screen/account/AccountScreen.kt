@@ -2,7 +2,10 @@ package it.hypernext.modacenter.fidelity.presentation.screen.account
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -49,18 +52,24 @@ fun AccountScreen(
         myPushNotificationToken = NotifierManager.getPushNotifier().getToken() ?: ""
     }
 
-    Scaffold(topBar = {
-        TopAppBar(title = {
-            Text(
-                text = stringResource(Res.string.account),
-                style = MaterialTheme.typography.headlineLarge
-            )
-        })
-    }, bottomBar = bottomBar,
+    Scaffold(modifier = Modifier.fillMaxSize(),
+        topBar = {
+            TopAppBar(title = {
+                Text(
+                    text = stringResource(Res.string.account),
+                    style = MaterialTheme.typography.headlineLarge
+                )
+            })
+        },
+        bottomBar = bottomBar,
         content = { it ->
-            Scaffold(
-                modifier = Modifier.padding(it).padding(start = 8.dp, end = 8.dp),
-                topBar = {
+            Column(
+                modifier = Modifier.verticalScroll(rememberScrollState()).padding(
+                    top = it.calculateTopPadding(),
+                    bottom = it.calculateBottomPadding(),
+                ).padding(8.dp)
+            ) {
+                Row {
                     viewModel.user.value?.let { user ->
                         Column {
                             Row {
@@ -77,23 +86,14 @@ fun AccountScreen(
                             }
                         }
                     }
-                }, content = {
-                    Column(
-                        modifier = Modifier
-                            .padding(
-                                top = it.calculateTopPadding(),
-                                bottom = it.calculateBottomPadding()
-                            )
-                    ) {
-                        Row {
-                            userDetail.DisplayResult(
-                                onLoading = { LoadingView() },
-                                onError = { ErrorView(it) },
-                                onSuccess = { data ->
-                                    UserDetailCard(userDetail = data)
-                                })
-                        }
-                    }
-                })
+                }
+                Row {
+                    userDetail.DisplayResult(onLoading = { LoadingView() },
+                        onError = { ErrorView(it) },
+                        onSuccess = { data ->
+                            UserDetailCard(userDetail = data)
+                        })
+                }
+            }
         })
 }

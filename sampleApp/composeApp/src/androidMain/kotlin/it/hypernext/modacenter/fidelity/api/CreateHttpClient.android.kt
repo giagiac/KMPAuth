@@ -18,13 +18,14 @@ import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 
 //In shared/androidMain
 @OptIn(ExperimentalSerializationApi::class)
 actual fun createHttpClient(): HttpClient = HttpClient(OkHttp) {
-    var accessToken:String = ""
-    var refreshToken:String = ""
+    var accessToken: String = "ACCESS_NOT_DEFINED"
+    var refreshToken: String = "REFRESH_NOT_DEFINED"
 
     //Timeout plugin for timeouts
     install(HttpTimeout) {
@@ -41,7 +42,7 @@ actual fun createHttpClient(): HttpClient = HttpClient(OkHttp) {
     defaultRequest {
         header("Content-Type", "application/json")
         header("Authorization", "Bearer ${"TEST"}")
-        url("https://api.openai.com/v1/")
+        // url("https://api.openai.com/v1/")
     }
     //ContentNegotiation plugin for negotiationing media types between the client and server
     install(ContentNegotiation) {
@@ -68,7 +69,7 @@ actual fun createHttpClient(): HttpClient = HttpClient(OkHttp) {
             refreshTokens {
                 // Esegui una richiesta al tuo endpoint di autenticazione
                 // usando il refresh token.
-                val response = client.post("your_auth_endpoint") {
+                val response = client.post("https://app.erroridiconiazione.com/auth/refresh") {
                     setBody(
                         // Invia il refresh token nel body della richiesta
                         RefreshRequest(refreshToken = refreshToken)
@@ -79,8 +80,8 @@ actual fun createHttpClient(): HttpClient = HttpClient(OkHttp) {
                 val tokens = response.body<AuthResponse>()
 
                 // Aggiorna i token nella struttura Auth
-                accessToken = tokens.accessToken
-                refreshToken = tokens.refreshToken
+                // accessToken = tokens.accessToken
+                // refreshToken = tokens.refreshToken
 
                 // Restituisci i nuovi token a Ktor
                 BearerTokens(
@@ -91,22 +92,16 @@ actual fun createHttpClient(): HttpClient = HttpClient(OkHttp) {
 
             // Configura l'header di autorizzazione
             sendWithoutRequest { request ->
-                !request.url.toString().contains("your_auth_endpoint")
+                !request.url.toString().contains("https://app.erroridiconiazione.com/auth/refresh")
             }
         }
     }
 }
 
 // Data class per la richiesta di refresh token
+@Serializable
 data class RefreshRequest(val refreshToken: String)
 
 // Data class per la risposta di autenticazione
+@Serializable
 data class AuthResponse(val accessToken: String, val refreshToken: String)
-
-// Data class per la struttura Auth
-data class Auth(val providers: AuthProviders)
-
-data class AuthProviders(
-    var accessToken: String,
-    var refreshToken: String
-)
