@@ -1,6 +1,6 @@
 name: Building Debug app
 
-on:
+#on:
   push:
     branches:
       - '**'
@@ -40,7 +40,7 @@ jobs:
         run: ./gradlew assembleDebug
 
       - name: Build iOS Debug app
-        run: xcodebuild -allowProvisioningUpdates -workspace iosApp/iosApp.xcworkspace -configuration Debug -scheme iosApp -sdk iphoneos -destination name='iPhone 14' build
+        run: xcodebuild -allowProvisioningUpdates -workspace sampleApp/iosApp/iosApp.xcworkspace -configuration Debug -scheme iosApp -sdk iphoneos -destination name='iPhone 14' build
 
       - name: Upload APK
         uses: actions/upload-artifact@v3
