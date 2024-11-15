@@ -45,7 +45,7 @@ jobs:
 
       - name: Build iOSApp archive
         run: |
-          xcodebuild -allowProvisioningUpdates -workspace iosApp/iosApp.xcworkspace \
+          xcodebuild -allowProvisioningUpdates -workspace sampleApp/iosApp/iosApp.xcworkspace \
           -scheme iosApp \
           -sdk iphoneos \
           -archivePath $RUNNER_TEMP/iosApp.xcarchive \
