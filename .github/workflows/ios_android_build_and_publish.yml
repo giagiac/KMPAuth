@@ -42,11 +42,12 @@ jobs:
           # apply provisioning profile
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
+          ls ~/Library/MobileDevice/Provisioning\ Profiles
 
       - name: Build iOSApp archive
         run: |
           cd sampleApp/iosApp
-          xcodebuild -allowProvisioningUpdates -scheme iosApp build
+          xcodebuild -scheme iosApp build
           # xcodebuild -allowProvisioningUpdates -workspace sampleApp/iosApp/iosApp.xcodeproj/iosApp.xcworkspace \
           # -scheme iosApp \
           # -sdk iphoneos \
