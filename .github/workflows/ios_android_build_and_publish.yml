@@ -45,6 +45,7 @@ jobs:
 
       - name: Build iOSApp archive
         run: |
+          cd $RUNNER_TEMP/sampleApp/iosApp
           xcodebuild -scheme iosApp build
           # xcodebuild -allowProvisioningUpdates -workspace sampleApp/iosApp/iosApp.xcodeproj/iosApp.xcworkspace \
           # -scheme iosApp \
