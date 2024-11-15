@@ -2,11 +2,11 @@ name: Building Debug app
 
 on:
   push:
-    branches:
-      - '**'
+#    branches:
+#      - '**'
   pull_request:
-    branches:
-      - '**'
+#    branches:
+#      - '**'
 
 
 
