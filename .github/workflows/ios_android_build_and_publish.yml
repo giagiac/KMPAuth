@@ -1,9 +1,5 @@
-name: Publishing app to PlayStore and AppStore
-
-on:
-  push:
-    tags:
-      - 'v*'
+name: App build
+on: push
 
 jobs:
   build_with_signing:
@@ -41,3 +37,5 @@ jobs:
           # apply provisioning profile
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
+      - name: Build app
+          # ...
