@@ -47,13 +47,13 @@ jobs:
       - name: Build iOSApp archive
         run: |
           cd sampleApp/iosApp
-          xcodebuild -scheme iosApp build
-          # xcodebuild -allowProvisioningUpdates -workspace sampleApp/iosApp/iosApp.xcodeproj/iosApp.xcworkspace \
-          # -scheme iosApp \
-          # -sdk iphoneos \
+          xcodebuild -allowProvisioningUpdates 
+          # -workspace sampleApp/iosApp/iosApp.xcodeproj/iosApp.xcworkspace \
+          -scheme iosApp \
+          -sdk iphoneos \
           # -archivePath $RUNNER_TEMP/iosApp.xcarchive \
-          # -configuration Release \
-          # -destination generic/platform=iOS \
+          -configuration Release \
+          -destination generic/platform=iOS
           # clean archive 
 
       - name: Clean up keychain and provisioning profile
