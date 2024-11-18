@@ -42,7 +42,7 @@ jobs:
           # import certificate, provisioning profile and apikey from secrets
           echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode -o $CERTIFICATE_PATH
           echo -n "$BUILD_PROVISION_PROFILE_BASE64" | base64 --decode -o $PP_PATH
-          echo -n "$APPSTORE_CONNECT_API_KEY_BASE64" | base64 --decode -o ~/private_keys/AuthKey_$APPSTORE_API_KEY_ID.p8
+          # echo -n "$APPSTORE_CONNECT_API_KEY_BASE64" | base64 --decode -o ~/private_keys/AuthKey_$APPSTORE_API_KEY_ID.p8
 
           # create temporary keychain
           security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
@@ -65,7 +65,7 @@ jobs:
           -configuration Debug \
           -destination generic/platform=iOS \
           clean archive
-          
+
       - name: Clean up keychain and provisioning profile
         if: ${{ always() }}
         run: |
