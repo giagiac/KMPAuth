@@ -6,7 +6,7 @@ on:
       
 jobs:
   build_with_signing:
-    runs-on: macos-latest
+    runs-on: macos-14
     environment: IOS_ANDROID_PUBLISH_V1
 
     steps:
@@ -46,9 +46,13 @@ jobs:
 
       - name: List files
         run: |
+          echo "🎉 change directory by event ${{ github.event_name }}"
           cd $RUNNER_TEMP
+          echo "🎉 list files"
           ls
+          echo "🎉 change directory by event ${{ github.event_name }}"
           cd ~/
+          echo "🎉 list files"
           ls
 
       - name: Build iOSApp archive
@@ -56,7 +60,8 @@ jobs:
           xcodebuild -allowProvisioningUpdates \
           -workspace sampleApp/iosApp/iosApp.xcodeproj/project.xcworkspace \
           -scheme iosApp \
-          -sdk iphoneos \
+          -sdk iphonesimulator \
+          -destination 'platform=iOS Simulator,name=iPhone 12,OS=15.6'
           -configuration Release -destination generic/platform=iOS
           # -archivePath $RUNNER_TEMP/sampleApp/iosApp/iosApp.xcarchive \
           # clean archive 
