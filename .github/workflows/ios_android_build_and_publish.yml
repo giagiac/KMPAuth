@@ -44,10 +44,17 @@ jobs:
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
           ls ~/Library/MobileDevice/Provisioning\ Profiles
 
+      - name: List files
+        run: |
+          cd $RUNNER_TEMP
+          ls
+          cd ~/
+          ls
+
       - name: Build iOSApp archive
         run: |
           xcodebuild -allowProvisioningUpdates \
-          -workspace $RUNNER_TEMP/sampleApp/iosApp/iosApp.xcodeproj/project.xcworkspace \
+          -workspace sampleApp/iosApp/iosApp.xcodeproj/project.xcworkspace \
           -scheme iosApp \
           -sdk iphoneos \
           -configuration Release -destination generic/platform=iOS
