@@ -44,7 +44,13 @@ jobs:
           echo -n "$BUILD_PROVISION_PROFILE_BASE64" | base64 --decode -o $PP_PATH
           # echo -n "$APPSTORE_CONNECT_API_KEY_BASE64" | base64 --decode -o ~/private_keys/AuthKey_$APPSTORE_API_KEY_ID.p8
 
-          security login-keychain
+          # security login-keychain
+          security create-keychain -p "$KEYCHAIN_PASSWORD" /Users/runner/Library/Keychains/login.keychain-db
+          security set-keychain-settings -lut 21600 /Users/runner/Library/Keychains/login.keychain-db
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" /Users/runner/Library/Keychains/login.keychain-db
+          security import "$CERTIFICATE_PATH" -P "$KEYCHAIN_PASSWORD" -A -t cert -f pkcs12 -k /Users/runner/Library/Keychains/login.keychain-db
+          security set-key-partition-list -S apple-tool:,apple: -k "$KEYCHAIN_PASSWORD" /Users/runner/Library/Keychains/login.keychain-db
+          security list-keychain -d user -s /Users/runner/Library/Keychains/login.keychain-db
       #     # create temporary keychain
       #     security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
       #     security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
