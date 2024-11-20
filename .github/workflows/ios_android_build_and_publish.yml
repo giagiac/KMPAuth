@@ -46,8 +46,8 @@ jobs:
 
           # security login-keychain
           # security create-keychain -p "$KEYCHAIN_PASSWORD" /Users/runner/Library/Keychains/login.keychain-db
-          security set-keychain-settings -lut 21600 /Users/runner/Library/Keychains/login.keychain-db
-          security unlock-keychain -p "$KEYCHAIN_PASSWORD" /Users/runner/Library/Keychains/login.keychain-db
+          # security set-keychain-settings -lut 21600 /Users/runner/Library/Keychains/login.keychain-db
+          # security unlock-keychain -p "$KEYCHAIN_PASSWORD" /Users/runner/Library/Keychains/login.keychain-db
           security import "$CERTIFICATE_PATH" -P "$KEYCHAIN_PASSWORD" -A -t cert -f pkcs12 -k /Users/runner/Library/Keychains/login.keychain-db
           security set-key-partition-list -S apple-tool:,apple: -k "$KEYCHAIN_PASSWORD" /Users/runner/Library/Keychains/login.keychain-db
           security list-keychain -d user -s /Users/runner/Library/Keychains/login.keychain-db
