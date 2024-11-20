@@ -8,13 +8,6 @@ jobs:
   build_with_signing:
     runs-on: macos-14
     environment: IOS_ANDROID_PUBLISH_V1
-    env:
-      BUILD_CERTIFICATE_BASE64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
-      P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
-      BUILD_PROVISION_PROFILE_BASE64: ${{ secrets.BUILD_PROVISION_PROFILE_BASE64 }}
-      KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
-      APPSTORE_CONNECT_API_KEY_BASE64: ${{ secrets.APPSTORE_CONNECT_API_KEY_BASE64 }}
-      APPSTORE_API_KEY_ID: ${{ secrets.APPSTORE_API_KEY_ID }}
 
     steps:
       - name: Checkout repository
@@ -94,5 +87,6 @@ jobs:
         run: |
           PP_PATH=$RUNNER_TEMP/build_pp.mobileprovision
           KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
+          
           security delete-keychain $KEYCHAIN_PATH
           rm $PP_PATH
